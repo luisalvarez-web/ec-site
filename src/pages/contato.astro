@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactCard from '../components/ContactCard.astro';
+import { site } from '../data/site';
+---
+<Base
+  title="Contato | EC Consultoria, Contabilidade em Vitória/ES"
+  description="Fale com a EC Consultoria pelo WhatsApp (27) 99285-1116, telefone (27) 3191-4636 ou e-mail. Av. N. Sra. dos Navegantes, 451, Enseada do Suá, Vitória/ES."
+>
+  <section class="block">
+    <div class="wrap">
+      <ContactCard as="h1" heading="Vamos conversar sobre a sua empresa." />
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Já é cliente?</span>
+          <h2>Guias, folha e documentos ficam na Área do Cliente.</h2>
+        </div>
+        <p>Acesse o portal Onvio com o usuário criado pela nossa equipe. Se precisar de acesso, chame no WhatsApp.</p>
+      </div>
+      <a class="btn btn-primary" href={site.onvio} target="_blank" rel="noopener">Entrar na Área do Cliente</a>
+    </div>
+  </section>
+</Base>

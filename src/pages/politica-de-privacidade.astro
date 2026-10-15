@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+const updated = '14 de outubro de 2026';
+---
+<Base
+  title="Política de Privacidade | EC Consultoria"
+  description="Como a EC Consultoria trata dados pessoais de visitantes e clientes, em conformidade com a LGPD (Lei 13.709/2018), e como exercer seus direitos."
+>
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">LGPD · atualizada em {updated}</span>
+      <h1>Política de Privacidade</h1>
+      <p class="lede">Como tratamos os dados pessoais de quem visita este site e de quem é nosso cliente.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap prose">
+      <h2>1. Quem é o controlador</h2>
+      <p>O controlador dos dados é a <strong>{site.legalName}</strong> ({site.name}), CNPJ {site.cnpj}, com sede na {site.address.street}, {site.address.district}, {site.address.city}/{site.address.state}, CEP {site.address.postalCode}.</p>
+
+      <h2>2. Quais dados coletamos</h2>
+      <ul>
+        <li><strong>Contato:</strong> nome, telefone, e-mail e o conteúdo das mensagens que você nos envia por WhatsApp, e-mail ou telefone.</li>
+        <li><strong>Clientes:</strong> dados cadastrais, fiscais, trabalhistas e financeiros necessários para prestar os serviços contratados, incluindo dados de sócios, colaboradores e dependentes.</li>
+        <li><strong>Navegação:</strong> este site não usa cookies de publicidade nem ferramentas de rastreamento próprias. Provedores de infraestrutura podem registrar dados técnicos, como endereço IP e navegador, para segurança e funcionamento.</li>
+      </ul>
+
+      <h2>3. Para que usamos os dados</h2>
+      <ul>
+        <li>Responder contatos e enviar propostas (procedimentos preliminares a contrato).</li>
+        <li>Executar os serviços contábeis, fiscais, trabalhistas e financeiros contratados (execução de contrato).</li>
+        <li>Cumprir obrigações legais e regulatórias perante Receita Federal, eSocial, Sefaz, prefeituras e demais órgãos (obrigação legal).</li>
+        <li>Guardar documentos pelos prazos exigidos em lei e defender direitos em processos (exercício regular de direitos).</li>
+      </ul>
+
+      <h2>4. Com quem compartilhamos</h2>
+      <p>Compartilhamos dados apenas quando necessário: com órgãos públicos para cumprir obrigações legais, com fornecedores de sistemas contábeis e de armazenamento (como o portal Onvio, usado na Área do Cliente) e com prestadores de comunicação (WhatsApp, e-mail). Não vendemos dados pessoais.</p>
+
+      <h2>5. Serviços de terceiros neste site</h2>
+      <p>As fontes do site são carregadas do Google Fonts, o que faz o seu navegador se conectar aos servidores do Google. Os links para WhatsApp, Google Maps e Onvio levam a serviços de terceiros, que têm suas próprias políticas de privacidade.</p>
+
+      <h2>6. Por quanto tempo guardamos</h2>
+      <p>Mantemos os dados pelo tempo necessário para prestar o serviço e pelos prazos legais de guarda de documentos fiscais, contábeis e trabalhistas. Mensagens de quem não se tornou cliente são descartadas quando deixam de ser necessárias.</p>
+
+      <h2>7. Segurança</h2>
+      <p>Adotamos medidas técnicas e administrativas para proteger os dados, como controle de acesso, uso de sistemas com autenticação e troca de documentos por canal seguro na Área do Cliente.</p>
+
+      <h2>8. Seus direitos</h2>
+      <p>Pela LGPD, você pode pedir confirmação do tratamento, acesso, correção, anonimização, portabilidade, eliminação de dados tratados com base em consentimento, informação sobre compartilhamentos e revisão de decisões. Alguns dados não podem ser eliminados enquanto houver obrigação legal de guarda.</p>
+
+      <h2>9. Como falar conosco</h2>
+      <p>Para exercer seus direitos ou tirar dúvidas sobre esta política, escreva para <a href={`mailto:${site.email}`}>{site.email}</a> ou ligue para <a href={site.phone.href}>{site.phone.display}</a>. Você também pode apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+      <h2>10. Alterações</h2>
+      <p>Esta política pode ser atualizada. A data da última revisão aparece no topo da página.</p>
+    </div>
+  </section>
+</Base>

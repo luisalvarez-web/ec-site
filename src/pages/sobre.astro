@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactCard from '../components/ContactCard.astro';
+import { site } from '../data/site';
+---
+<Base
+  title="Sobre a EC Consultoria | Contabilidade em Vitória/ES desde 2016"
+  description="Conheça a EC Consultoria: escritório de contabilidade em Vitória/ES desde 2016, que trata a contabilidade como ferramenta de gestão."
+>
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Sobre</span>
+      <h1>Contabilidade como ferramenta de gestão.</h1>
+      <p class="lede">Um escritório em Vitória/ES que une técnica contábil e atendimento próximo para construir relações de longo prazo com empresas e pessoas.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Nossa história</span>
+        <h2>Mais que uma obrigação.</h2>
+        <p>A EC Consultoria nasceu em fevereiro de 2016 para mostrar que a contabilidade pode ser um diferencial estratégico, e não apenas uma obrigação com o Fisco.</p>
+        <p>Cada cliente é atendido diretamente pelo contador responsável, que conhece a operação, os números e os objetivos da empresa. O resultado é uma rotina fiscal em dia e informação útil para decidir.</p>
+        <div class="since">2016<span>fundada em fevereiro · Vitória/ES</span></div>
+      </div>
+      <div class="values">
+        <div><h3>Excelência</h3><p>Padrão alto em cada entrega, do lançamento ao balanço.</p></div>
+        <div><h3>Personalização</h3><p>Soluções ajustadas à realidade de cada cliente.</p></div>
+        <div><h3>Transparência</h3><p>Comunicação clara sobre prazos, custos e riscos.</p></div>
+        <div><h3>Inovação</h3><p>Tecnologia para tirar trabalho manual do seu caminho.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Como trabalhamos</span>
+          <h2>Da primeira conversa à rotina mensal.</h2>
+        </div>
+        <p>A migração de outro escritório é conduzida por nós, sem interromper suas obrigações.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Diagnóstico</h3><p>Entendemos regime tributário, folha e rotinas atuais e apontamos riscos e oportunidades.</p></div>
+        <div class="step"><div class="n">2</div><h3>Transição</h3><p>Recebemos a documentação, assumimos as procurações e acertamos o calendário com você.</p></div>
+        <div class="step"><div class="n">3</div><h3>Rotina e leitura</h3><p>Obrigações entregues no prazo e um balancete que explica o mês em linguagem de gestão.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Dados da empresa</span>
+          <h2>Quem somos, formalmente.</h2>
+        </div>
+        <p>Atendimento presencial em Vitória e remoto para todo o Espírito Santo.</p>
+      </div>
+      <dl class="channels" style="max-width:720px">
+        <div><dt>Razão social</dt><dd>{site.legalName}</dd></div>
+        <div><dt>Nome</dt><dd>{site.name}</dd></div>
+        <div><dt>CNPJ</dt><dd>{site.cnpj}</dd></div>
+        <div><dt>Endereço</dt><dd>{site.address.street} · {site.address.district}, {site.address.city}/{site.address.state} · {site.address.postalCode}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <ContactCard />
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,35 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  heading?: string;
+  as?: 'h1' | 'h2';
+}
+
+const { heading = 'Vamos conversar sobre a sua empresa.', as: Tag = 'h2' } = Astro.props;
+const a = site.address;
+---
+<div class="contact">
+  <div>
+    <span class="eyebrow">Contato</span>
+    <Tag>{heading}</Tag>
+    <p>Respondemos em horário comercial, normalmente no mesmo dia.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href={site.whatsapp.href} target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      <a class="btn btn-ghost" href={`mailto:${site.email}`}>Enviar e-mail</a>
+    </div>
+  </div>
+  <dl class="channels">
+    <div><dt>WhatsApp</dt><dd><a href={site.whatsapp.href} target="_blank" rel="noopener">{site.whatsapp.display}</a></dd></div>
+    <div><dt>Telefone</dt><dd><a href={site.phone.href}>{site.phone.display}</a></dd></div>
+    <div><dt>E-mail</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+    <div>
+      <dt>Endereço</dt>
+      <dd>
+        <a href={site.mapsUrl} target="_blank" rel="noopener">
+          {a.street} · {a.district}, {a.city}/{a.state} · {a.postalCode}
+        </a>
+      </dd>
+    </div>
+  </dl>
+</div>

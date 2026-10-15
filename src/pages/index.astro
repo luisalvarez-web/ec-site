@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactCard from '../components/ContactCard.astro';
+import { site, services } from '../data/site';
+---
+<Base
+  title="EC Consultoria | Escritório de Contabilidade em Vitória/ES"
+  description="Contabilidade, consultoria fiscal, IRPF e departamento pessoal em Vitória/ES. Rotinas em dia e leitura gerencial dos números com o contador responsável."
+>
+  <div class="wrap hero">
+    <div>
+      <span class="eyebrow">Escritório de contabilidade · Vitória/ES</span>
+      <h1>Contabilidade que <mark>fecha o mês</mark> com você, e não só com o Fisco.</h1>
+      <p class="lede">Rotinas contábeis, fiscais e de pessoal em dia, com leitura gerencial dos números para você decidir melhor. Atendimento direto com o contador responsável.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={site.whatsapp.href} target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn btn-ghost" href="/servicos">Ver serviços</a>
+      </div>
+      <div class="trust">
+        <span><b>2016</b> desde</span>
+        <span><b>6</b> frentes de serviço</span>
+        <span><b>ES</b> atendimento local e remoto</span>
+      </div>
+    </div>
+
+    <aside class="ledger" aria-label="Exemplo de agenda fiscal">
+      <div class="ledger-head">
+        <h2>Agenda do cliente · out/2026</h2>
+        <span class="eyebrow">exemplo</span>
+      </div>
+      <table>
+        <tbody>
+          <tr><td>Folha de pagamento · eSocial</td><td><span class="pill ok">enviado</span></td></tr>
+          <tr><td>EFD-Reinf</td><td><span class="pill ok">enviado</span></td></tr>
+          <tr><td>DAS · Simples Nacional</td><td><span class="pill due">vence 20/10</span></td></tr>
+          <tr><td>FGTS Digital</td><td><span class="pill due">vence 20/10</span></td></tr>
+          <tr><td>Balancete de setembro</td><td><span class="pill ok">disponível</span></td></tr>
+        </tbody>
+      </table>
+      <div class="ledger-foot">Guias e relatórios ficam na Área do Cliente (Onvio).</div>
+    </aside>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <p><strong>Reforma Tributária:</strong> 2026 é o ano de teste da CBS e do IBS. Revisamos cadastros, notas e precificação da sua empresa para a transição.</p>
+      <a href="/contato">Agendar diagnóstico →</a>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Serviços</span>
+          <h2>Tudo o que a sua empresa precisa entregar, num só escritório.</h2>
+        </div>
+        <p>Para empresas do Simples, Lucro Presumido e Lucro Real, e para pessoas físicas que querem o imposto de renda feito com cuidado.</p>
+      </div>
+      <div class="services">
+        {services.map((s, i) => (
+          <a class:list={['svc', { feature: i === 0 }]} href={`/servicos#${s.id}`}>
+            <span class="code">{s.code}</span>
+            <h3>{s.title}</h3>
+            <p>{s.summary}</p>
+            <span class="more">Saiba mais →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Como funciona</span>
+          <h2>Da primeira conversa à rotina mensal.</h2>
+        </div>
+        <p>A migração de outro escritório é conduzida por nós, sem interromper suas obrigações.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Diagnóstico</h3><p>Entendemos regime tributário, folha e rotinas atuais e apontamos riscos e oportunidades.</p></div>
+        <div class="step"><div class="n">2</div><h3>Transição</h3><p>Recebemos a documentação, assumimos as procurações e acertamos o calendário com você.</p></div>
+        <div class="step"><div class="n">3</div><h3>Rotina e leitura</h3><p>Obrigações entregues no prazo e um balancete que explica o mês em linguagem de gestão.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap irpf">
+      <div>
+        <span class="eyebrow">IRPF 2027</span>
+        <h2>Seu imposto de renda, sem caçar documento em março.</h2>
+        <p>No Portal EC você recebe um checklist feito para o seu caso, envia os comprovantes e acompanha cada etapa até a transmissão.</p>
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="/irpf">Como funciona o IRPF</a>
+        </div>
+      </div>
+      <ul class="checklist" aria-label="Exemplo de checklist do IRPF">
+        <li><span class="box on" aria-hidden="true">✓</span><div>Informe de rendimentos do empregador<small>recebido em 12/02</small></div></li>
+        <li><span class="box on" aria-hidden="true">✓</span><div>Informes bancários e de corretora<small>3 de 3 enviados</small></div></li>
+        <li><span class="box" aria-hidden="true"></span><div>Recibos médicos e odontológicos<small>pendente</small></div></li>
+        <li><span class="box" aria-hidden="true"></span><div>Comprovante de previdência privada (PGBL)<small>pendente</small></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Sobre</span>
+        <h2>Contabilidade como ferramenta de gestão.</h2>
+        <p>A EC Consultoria nasceu para mostrar que a contabilidade pode ser um diferencial estratégico, e não apenas uma obrigação. Unimos técnica e atendimento próximo para construir relações de longo prazo.</p>
+        <a class="btn btn-ghost" href="/sobre">Conheça o escritório</a>
+      </div>
+      <div class="values">
+        <div><h3>Excelência</h3><p>Padrão alto em cada entrega, do lançamento ao balanço.</p></div>
+        <div><h3>Personalização</h3><p>Soluções ajustadas à realidade de cada cliente.</p></div>
+        <div><h3>Transparência</h3><p>Comunicação clara sobre prazos, custos e riscos.</p></div>
+        <div><h3>Inovação</h3><p>Tecnologia para tirar trabalho manual do seu caminho.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <ContactCard />
+    </div>
+  </section>
+</Base>

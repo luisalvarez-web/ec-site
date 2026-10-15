@@ -1,0 +1,136 @@
+---
+import '../styles/global.css';
+import { site, nav, services } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** JSON-LD extra além do LocalBusiness (ex.: FAQPage, Service) */
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description, schema = [] } = Astro.props;
+
+// Limite de SEO acordado: até 155 caracteres para title e meta description.
+const MAX = 155;
+for (const [field, value] of [['title', title], ['description', description]] as const) {
+  if (value.length > MAX) {
+    throw new Error(`${Astro.url.pathname}: ${field} com ${value.length} caracteres (máx. ${MAX}): "${value}"`);
+  }
+}
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  '@id': `${site.url}/#empresa`,
+  name: site.name,
+  legalName: site.legalName,
+  url: site.url,
+  logo: `${site.url}/favicon.svg`,
+  image: `${site.url}/favicon.svg`,
+  description:
+    'Escritório de contabilidade em Vitória/ES: contabilidade, consultoria fiscal, imposto de renda, departamento pessoal, terceirização financeira e legalização de empresas.',
+  telephone: site.phone.e164,
+  email: site.email,
+  foundingDate: site.foundingDate,
+  taxID: site.cnpj,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.state,
+    postalCode: site.address.postalCode,
+    addressCountry: 'BR',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Vitória' },
+    { '@type': 'State', name: 'Espírito Santo' },
+  ],
+  contactPoint: [
+    { '@type': 'ContactPoint', contactType: 'customer service', telephone: site.whatsapp.e164, availableLanguage: 'Portuguese' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Serviços',
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, description: s.summary, url: `${site.url}/servicos#${s.id}` },
+    })),
+  },
+};
+
+const jsonLd = [localBusiness, ...schema];
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#16408C" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+
+    {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+  </head>
+  <body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="logo" href="/" aria-label="EC Consultoria, página inicial">
+          <span class="logo-mark" aria-hidden="true">EC</span><span class="logo-text">EC Consultoria</span>
+        </a>
+        <nav class="links" aria-label="Principal">
+          {nav.map((item) => (
+            <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+        <details class="menu">
+          <summary>Menu</summary>
+          <nav aria-label="Principal (celular)">
+            <a href="/">Início</a>
+            {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+          </nav>
+        </details>
+        <a class="btn btn-primary btn-sm" href={site.onvio} target="_blank" rel="noopener">Área do Cliente</a>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span class="legal">{site.name} · {site.legalName} · CNPJ {site.cnpj}</span>
+        <nav aria-label="Rodapé">
+          <a href="/servicos">Serviços</a>
+          <a href="/contato">Contato</a>
+          <a href="/faq">FAQ</a>
+          <a href="/politica-de-privacidade">Política de Privacidade</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

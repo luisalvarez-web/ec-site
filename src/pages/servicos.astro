@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactCard from '../components/ContactCard.astro';
+import { site, services } from '../data/site';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Serviços da EC Consultoria',
+    itemListElement: services.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.summary,
+        url: `${site.url}/servicos#${s.id}`,
+        provider: { '@id': `${site.url}/#empresa` },
+        areaServed: 'Espírito Santo',
+      },
+    })),
+  },
+];
+---
+<Base
+  title="Serviços Contábeis em Vitória/ES | EC Consultoria"
+  description="Contabilidade, consultoria fiscal, imposto de renda, departamento pessoal, terceirização financeira e legalização de empresas em Vitória/ES."
+  schema={schema}
+>
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Serviços</span>
+      <h1>Tudo o que a sua empresa precisa entregar, num só escritório.</h1>
+      <p class="lede">Para empresas do Simples, Lucro Presumido e Lucro Real, e para pessoas físicas que querem o imposto de renda feito com cuidado.</p>
+      <ul class="svc-index" aria-label="Ir para o serviço">
+        {services.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap">
+    {services.map((s) => (
+      <section class="svc-detail" id={s.id} aria-labelledby={`${s.id}-titulo`}>
+        <div>
+          <span class="eyebrow">{s.code}</span>
+          <h2 id={`${s.id}-titulo`}>{s.title}</h2>
+          <p>{s.intro}</p>
+          <p class="for"><strong>Para quem:</strong> {s.forWhom}</p>
+        </div>
+        <div>
+          <ul class="ticks">
+            {s.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <section class="block tight" style="padding-top:24px">
+    <div class="wrap">
+      <ContactCard heading="Quer saber qual combinação de serviços faz sentido para você?" />
+    </div>
+  </section>
+</Base>

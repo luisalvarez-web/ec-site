@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactCard from '../components/ContactCard.astro';
+import { site } from '../data/site';
+
+const docs = [
+  'Informes de rendimentos de empregadores, aposentadoria e pensão',
+  'Informes de bancos, corretoras e fundos de investimento',
+  'Recibos e notas de despesas médicas e odontológicas',
+  'Comprovantes de despesas com educação',
+  'Comprovante de previdência privada (PGBL)',
+  'Documentos de compra e venda de imóveis, veículos e outros bens',
+  'Recibos de aluguel recebido ou pago',
+  'Dados de dependentes (CPF, data de nascimento, rendimentos)',
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Declaração de Imposto de Renda Pessoa Física (IRPF)',
+    serviceType: 'Declaração de IRPF',
+    url: `${site.url}/irpf`,
+    provider: { '@id': `${site.url}/#empresa` },
+    areaServed: 'Brasil',
+  },
+];
+---
+<Base
+  title="Declaração de Imposto de Renda (IRPF) em Vitória/ES | EC Consultoria"
+  description="Declaração de IRPF com checklist sob medida, deduções bem aproveitadas e acompanhamento na Receita depois da entrega. Atendimento em Vitória/ES e online."
+  schema={schema}
+>
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">IRPF 2027</span>
+      <h1>Seu imposto de renda, sem caçar documento em março.</h1>
+      <p class="lede">Declaração completa, deduções bem aproveitadas e acompanhamento junto à Receita Federal depois da entrega.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap irpf">
+      <div>
+        <span class="eyebrow">Portal EC</span>
+        <h2>Um checklist feito para o seu caso.</h2>
+        <p>No Portal EC você recebe a lista exata do que precisa enviar, sobe os comprovantes e acompanha cada etapa até a transmissão da declaração.</p>
+        <span class="soon">Em breve</span>
+      </div>
+      <ul class="checklist" aria-label="Exemplo de checklist do IRPF">
+        <li><span class="box on" aria-hidden="true">✓</span><div>Informe de rendimentos do empregador<small>recebido em 12/02</small></div></li>
+        <li><span class="box on" aria-hidden="true">✓</span><div>Informes bancários e de corretora<small>3 de 3 enviados</small></div></li>
+        <li><span class="box" aria-hidden="true"></span><div>Recibos médicos e odontológicos<small>pendente</small></div></li>
+        <li><span class="box" aria-hidden="true"></span><div>Comprovante de previdência privada (PGBL)<small>pendente</small></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Como funciona</span>
+          <h2>Do envio dos documentos ao recibo da Receita.</h2>
+        </div>
+        <p>Você fala com o mesmo contador do começo ao fim.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Checklist</h3><p>Montamos a lista de documentos a partir da sua declaração anterior e da sua situação atual.</p></div>
+        <div class="step"><div class="n">2</div><h3>Conferência</h3><p>Conferimos os dados com a declaração pré-preenchida e escolhemos o modelo mais vantajoso.</p></div>
+        <div class="step"><div class="n">3</div><h3>Entrega e acompanhamento</h3><p>Transmitimos, enviamos o recibo e acompanhamos o processamento, inclusive em caso de malha fina.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap about">
+      <div>
+        <span class="eyebrow">Documentos</span>
+        <h2>O que normalmente é pedido.</h2>
+        <p>A lista final depende do seu caso. Se você tem dúvida se algo entra na declaração, envie mesmo assim: nós avaliamos.</p>
+      </div>
+      <ul class="ticks">
+        {docs.map((d) => <li>{d}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Também fazemos</span>
+          <h2>Além da declaração anual.</h2>
+        </div>
+        <p>Para quem tem rendimentos ao longo do ano que exigem atenção mensal.</p>
+      </div>
+      <ul class="ticks" style="max-width:720px">
+        <li>Carnê-leão mensal (aluguéis, rendimentos do exterior, profissionais liberais)</li>
+        <li>Apuração de ganho de capital na venda de bens</li>
+        <li>Imposto sobre operações em bolsa</li>
+        <li>Retificação de declarações e regularização de malha fina</li>
+        <li>Declaração de espólio e de saída definitiva do país</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <ContactCard heading="Quer garantir sua vaga para o IRPF 2027?" />
+    </div>
+  </section>
+</Base>
