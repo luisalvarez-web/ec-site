@@ -1,23 +1,25 @@
 /* Layout: livro-razão — pautas finas, colunas de débito/crédito como ritmo; conteúdo em coluna de 1120px */
 :root {
   --bg: #F4F6FA; --surface: #FFFFFF; --ink: #0F1A2E; --muted: #56627A;
-  --line: #D6DDEA; --petrol: #16408C; --petrol-2: #E6ECF7; --accent: #E0A82E; --accent-ink: #5A3E00;
+  --line: #D6DDEA; --petrol: #0000FF; --petrol-2: #E8E8FF; --accent: #E0A82E; --accent-ink: #5A3E00;
   --ok: #1E7A52;
   --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --brand: #0000FF;
+  --brand-font: "Montserrat", "Segoe UI", system-ui, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0B1220; --surface: #111B2E; --ink: #E6ECF5; --muted: #97A3BA;
-    --line: #22304A; --petrol: #86A9F2; --petrol-2: #15233D; --accent: #EDBB4C; --accent-ink: #2A1D00;
+    --line: #22304A; --petrol: #9C9CFF; --petrol-2: #16184A; --accent: #EDBB4C; --accent-ink: #2A1D00;
     --ok: #5CC592; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0B1220; --surface: #111B2E; --ink: #E6ECF5; --muted: #97A3BA;
-  --line: #22304A; --petrol: #86A9F2; --petrol-2: #15233D; --accent: #EDBB4C; --accent-ink: #2A1D00;
+  --line: #22304A; --petrol: #9C9CFF; --petrol-2: #16184A; --accent: #EDBB4C; --accent-ink: #2A1D00;
   --ok: #5CC592; color-scheme: dark;
 }
 
@@ -36,8 +38,12 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-he
 /* header */
 .site-header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line) }
 .nav { display: flex; align-items: center; gap: 24px; padding-block: 14px }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -.01em }
-.logo-mark { width: 34px; height: 34px; border-radius: 8px; background: var(--petrol); color: var(--bg); display: grid; place-items: center; font-size: .95rem }
+.logo { display: flex; text-decoration: none; flex: none }
+.brand { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 8px }
+.brand-band { display: inline-flex; align-items: center; gap: 10px; background: var(--brand); padding: 3px 14px 3px 3px; color: #fff }
+.brand-mark { width: 32px; height: 32px; display: block; flex: none }
+.brand-name { font-family: var(--brand-font); font-weight: 700; font-size: 1.12rem; letter-spacing: -.005em; line-height: 1; white-space: nowrap }
+.brand-tagline { font-family: var(--brand-font); font-size: .8rem; letter-spacing: .06em; color: var(--ink) }
 .links { display: flex; gap: 22px; margin-left: auto; font-weight: 500; font-size: .98rem }
 .links a { text-decoration: none; color: var(--muted) }
 .links a:hover, .links a[aria-current="page"] { color: var(--ink) }
@@ -45,7 +51,7 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-he
 .menu { display: none; position: relative }
 .menu summary { list-style: none; cursor: pointer; padding: 8px 12px; border: 1.5px solid var(--line); border-radius: 999px; font-weight: 600; font-size: .92rem; background: var(--surface) }
 .menu summary::-webkit-details-marker { display: none }
-.menu nav { position: absolute; right: 0; top: calc(100% + 10px); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px; min-width: 200px; display: grid; box-shadow: 0 18px 40px -24px rgba(22, 64, 140, .35) }
+.menu nav { position: absolute; right: 0; top: calc(100% + 10px); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px; min-width: 200px; display: grid; box-shadow: 0 18px 40px -24px rgba(0, 0, 255, .3) }
 .menu nav a { text-decoration: none; padding: 10px 12px; border-radius: 8px }
 .menu nav a:hover { background: var(--petrol-2) }
 @media (max-width: 860px) {
@@ -53,7 +59,7 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-he
   .menu { display: block; margin-left: auto }
   .nav { gap: 10px }
 }
-@media (max-width: 400px) { .logo-text { display: none } }
+@media (max-width: 420px) { .brand-name { display: none } .brand-band { padding-right: 3px } }
 
 .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 11px 20px; font-size: .98rem; border: 1.5px solid transparent; transition: transform .15s ease, background .15s }
 .btn:hover { transform: translateY(-1px) }
@@ -77,7 +83,7 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-he
 .page-hero .lede { margin-bottom: 0 }
 
 /* ledger card */
-.ledger { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px -24px rgba(22, 64, 140, .35); overflow: hidden }
+.ledger { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px -24px rgba(0, 0, 255, .3); overflow: hidden }
 .ledger-head { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 20px; border-bottom: 1px solid var(--line) }
 .ledger-head h2, .ledger-head h3 { font-size: 1.02rem }
 .ledger table { width: 100%; border-collapse: collapse; font-size: .93rem; font-variant-numeric: tabular-nums }
@@ -87,6 +93,14 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-he
 .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-family: var(--mono); font-size: .74rem }
 .pill.ok { background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok) }
 .pill.due { background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--ink) }
+.ledger.area { max-width: 720px }
+.ledger .uf { font-family: var(--mono); font-size: .78rem; color: var(--muted); margin-left: 4px }
+.dd-note { display: block; font-weight: 400; font-size: .92rem; color: var(--muted) }
+.svc.cta { background: var(--brand); color: #fff; justify-content: center }
+.svc.cta p, .svc.cta .code { color: rgba(255, 255, 255, .8) }
+.svc.cta .more { color: #fff }
+.svc.cta:hover { background: var(--brand); filter: brightness(1.12) }
+@media (min-width: 901px) { .svc.cta { grid-column: span 2 } }
 .ledger-foot { padding: 12px 20px; background: var(--petrol-2); font-size: .82rem; color: var(--muted) }
 
 /* reform band */
@@ -200,5 +214,8 @@ section.block.tight { padding-top: 0 }
 footer.site-footer { border-top: 1px solid var(--line); margin-top: clamp(56px, 8vw, 96px) }
 footer.site-footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; padding-block: 28px; font-size: .88rem; color: var(--muted) }
 footer.site-footer .legal { font-family: var(--mono); font-size: .78rem }
+footer.site-footer .footer-brand { display: grid; gap: 6px; justify-items: start }
+footer.site-footer .footer-brand .logo { margin-bottom: 8px }
+footer.site-footer .footer-brand .brand-name { display: inline }
 footer.site-footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important } }

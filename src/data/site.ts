@@ -1,12 +1,14 @@
 export const site = {
   name: 'EC Consultoria',
+  tagline: 'Conhecimento que gera resultados',
   legalName: 'Erudition Consulting Ltda',
   cnpj: '24.275.977/0001-80',
   url: 'https://ec-consultoria.com',
   foundingDate: '2016-02',
   onvio: 'https://onvio.com.br/clientcenter/company/293313ACFCAD44E1A627AC57CE66E9A6',
-  whatsapp: { display: '(27) 99285-1116', href: 'https://wa.me/5527992851116', e164: '+55-27-99285-1116' },
+  // O WhatsApp do escritório é o mesmo número do telefone fixo.
   phone: { display: '(27) 3191-4636', href: 'tel:+552731914636', e164: '+55-27-3191-4636' },
+  whatsapp: { display: '(27) 3191-4636', href: 'https://wa.me/552731914636' },
   email: 'contato@ec-consultoria.com',
   address: {
     street: 'Av. Nossa Senhora dos Navegantes, 451, sala 815',
@@ -17,6 +19,17 @@ export const site = {
   },
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=Av.+Nossa+Senhora+dos+Navegantes+451+Enseada+do+Su%C3%A1+Vit%C3%B3ria+ES',
+};
+
+// Presencial na Grande Vitória, remoto para todo o Brasil. Cidades com clientes atendidos hoje.
+export const serviceArea = {
+  summary: 'Atendimento presencial na Grande Vitória e remoto para todo o Brasil.',
+  cities: [
+    { name: 'Vitória', state: 'ES', stateName: 'Espírito Santo', mode: 'presencial' },
+    { name: 'Serra', state: 'ES', stateName: 'Espírito Santo', mode: 'presencial' },
+    { name: 'Vila Velha', state: 'ES', stateName: 'Espírito Santo', mode: 'presencial' },
+    { name: 'Niterói', state: 'RJ', stateName: 'Rio de Janeiro', mode: 'remoto' },
+  ],
 };
 
 export const nav = [
@@ -136,12 +149,33 @@ export const services: Service[] = [
     ],
     forWhom: 'Quem vai abrir, mudar ou encerrar uma empresa no Espírito Santo.',
   },
+  {
+    id: 'terceiro-setor',
+    code: 'ONG · MENSAL',
+    title: 'Entidades sem Fins Lucrativos',
+    summary: 'Contabilidade para ONGs, associações e fundações, com prestação de contas e manutenção de imunidades e isenções.',
+    intro:
+      'Entidades do terceiro setor têm regras contábeis e fiscais próprias. Cuidamos da escrituração, da prestação de contas a parceiros e financiadores e das obrigações que mantêm a entidade regular e apta a receber recursos.',
+    items: [
+      'Contabilidade conforme a ITG 2002 (entidades sem finalidade de lucros)',
+      'Prestação de contas de convênios, termos de fomento e colaboração (MROSC)',
+      'Manutenção de imunidade e isenção tributária',
+      'Folha de pagamento, voluntariado e eSocial',
+      'ECD, ECF, EFD-Reinf e demais obrigações acessórias',
+      'Constituição, alteração de estatuto e registro de atas',
+    ],
+    forWhom: 'ONGs, associações, fundações, institutos e demais organizações da sociedade civil.',
+  },
 ];
 
 export const faq: { q: string; a: string }[] = [
   {
     q: 'Vocês atendem apenas empresas de Vitória?',
-    a: 'Não. O escritório fica em Vitória/ES e atende presencialmente na Grande Vitória, mas boa parte dos clientes é atendida de forma remota, com documentos e guias trocados pela Área do Cliente.',
+    a: 'Não. O atendimento é presencial na Grande Vitória e remoto para todo o Brasil, com documentos e guias trocados pela Área do Cliente. Hoje temos clientes em Vitória, Serra, Vila Velha e Niterói (RJ).',
+  },
+  {
+    q: 'Vocês atendem ONGs e entidades sem fins lucrativos?',
+    a: 'Sim. Fazemos a contabilidade de ONGs, associações e fundações, incluindo prestação de contas de convênios e termos de fomento e a manutenção de imunidades e isenções.',
   },
   {
     q: 'Como funciona a troca de contador?',

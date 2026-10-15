@@ -1,0 +1,27 @@
+---
+// Logo da EC Consultoria recriada em SVG a partir de public/logo-ec-consultoria.png:
+// faixa azul #0000FF, quadrado branco com três barras e sombra a 50%.
+interface Props {
+  tagline?: boolean;
+}
+const { tagline = false } = Astro.props;
+---
+<span class="brand">
+  <span class="brand-band">
+    <svg class="brand-mark" viewBox="0 0 154 154" aria-hidden="true" focusable="false">
+      <rect width="154" height="154" fill="#fff" />
+      <g fill="#7F7FFF">
+        <rect x="24" y="89" width="30" height="42" rx="4" />
+        <rect x="69" y="65" width="30" height="66" rx="4" />
+        <rect x="114" y="39" width="30" height="92" rx="4" />
+      </g>
+      <g fill="#0000FF">
+        <rect x="15" y="80" width="30" height="42" rx="4" />
+        <rect x="60" y="56" width="30" height="66" rx="4" />
+        <rect x="105" y="30" width="30" height="92" rx="4" />
+      </g>
+    </svg>
+    <span class="brand-name">EC Consultoria</span>
+  </span>
+  {tagline && <span class="brand-tagline">Conhecimento que gera resultados</span>}
+</span>

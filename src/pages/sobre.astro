@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ContactCard from '../components/ContactCard.astro';
+import ServiceArea from '../components/ServiceArea.astro';
 import { site } from '../data/site';
 ---
 <Base
@@ -57,7 +58,7 @@ import { site } from '../data/site';
           <span class="eyebrow">Dados da empresa</span>
           <h2>Quem somos, formalmente.</h2>
         </div>
-        <p>Atendimento presencial em Vitória e remoto para todo o Espírito Santo.</p>
+        <p>Atendimento presencial na Grande Vitória e remoto para todo o Brasil.</p>
       </div>
       <dl class="channels" style="max-width:720px">
         <div><dt>Razão social</dt><dd>{site.legalName}</dd></div>
@@ -65,6 +66,12 @@ import { site } from '../data/site';
         <div><dt>CNPJ</dt><dd>{site.cnpj}</dd></div>
         <div><dt>Endereço</dt><dd>{site.address.street} · {site.address.district}, {site.address.city}/{site.address.state} · {site.address.postalCode}</dd></div>
       </dl>
+    </div>
+  </section>
+
+  <section class="block tight">
+    <div class="wrap">
+      <ServiceArea />
     </div>
   </section>
 

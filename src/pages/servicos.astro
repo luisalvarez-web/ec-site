@@ -17,7 +17,7 @@ const schema = [
         description: s.summary,
         url: `${site.url}/servicos#${s.id}`,
         provider: { '@id': `${site.url}/#empresa` },
-        areaServed: 'Espírito Santo',
+        areaServed: 'Brasil',
       },
     })),
   },
@@ -25,14 +25,14 @@ const schema = [
 ---
 <Base
   title="Serviços Contábeis em Vitória/ES | EC Consultoria"
-  description="Contabilidade, consultoria fiscal, imposto de renda, departamento pessoal, terceirização financeira e legalização de empresas em Vitória/ES."
+  description="Contabilidade, consultoria fiscal, IRPF, departamento pessoal, financeiro, abertura de empresas e ONGs. Presencial em Vitória/ES e online no Brasil."
   schema={schema}
 >
   <div class="page-hero">
     <div class="wrap">
       <span class="eyebrow">Serviços</span>
       <h1>Tudo o que a sua empresa precisa entregar, num só escritório.</h1>
-      <p class="lede">Para empresas do Simples, Lucro Presumido e Lucro Real, e para pessoas físicas que querem o imposto de renda feito com cuidado.</p>
+      <p class="lede">Para empresas do Simples, Lucro Presumido e Lucro Real, entidades sem fins lucrativos e pessoas físicas que querem o imposto de renda feito com cuidado.</p>
       <ul class="svc-index" aria-label="Ir para o serviço">
         {services.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}
       </ul>

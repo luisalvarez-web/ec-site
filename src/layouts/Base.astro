@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-import { site, nav, services } from '../data/site';
+import Logo from '../components/Logo.astro';
+import { site, nav, services, serviceArea } from '../data/site';
 
 interface Props {
   title: string;
@@ -29,10 +30,11 @@ const localBusiness = {
   name: site.name,
   legalName: site.legalName,
   url: site.url,
-  logo: `${site.url}/favicon.svg`,
-  image: `${site.url}/favicon.svg`,
+  logo: `${site.url}/logo-ec-consultoria.png`,
+  image: `${site.url}/logo-ec-consultoria.png`,
+  slogan: site.tagline,
   description:
-    'Escritório de contabilidade em Vitória/ES: contabilidade, consultoria fiscal, imposto de renda, departamento pessoal, terceirização financeira e legalização de empresas.',
+    'Escritório de contabilidade em Vitória/ES, com atendimento presencial na Grande Vitória e remoto para todo o Brasil: contabilidade, consultoria fiscal, imposto de renda, departamento pessoal, terceirização financeira, legalização de empresas e entidades sem fins lucrativos.',
   telephone: site.phone.e164,
   email: site.email,
   foundingDate: site.foundingDate,
@@ -47,11 +49,21 @@ const localBusiness = {
     addressCountry: 'BR',
   },
   areaServed: [
-    { '@type': 'City', name: 'Vitória' },
-    { '@type': 'State', name: 'Espírito Santo' },
+    ...serviceArea.cities.map((c) => ({
+      '@type': 'City',
+      name: c.name,
+      containedInPlace: { '@type': 'State', name: c.stateName },
+    })),
+    { '@type': 'Country', name: 'Brasil' },
   ],
   contactPoint: [
-    { '@type': 'ContactPoint', contactType: 'customer service', telephone: site.whatsapp.e164, availableLanguage: 'Portuguese' },
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: site.phone.e164,
+      areaServed: 'BR',
+      availableLanguage: 'Portuguese',
+    },
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -73,9 +85,11 @@ const jsonLd = [localBusiness, ...schema];
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="theme-color" content="#16408C" />
+    <meta name="theme-color" content="#0000FF" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
@@ -83,13 +97,17 @@ const jsonLd = [localBusiness, ...schema];
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={`${site.url}/logo-ec-consultoria.png`} />
+    <meta property="og:image:width" content="1000" />
+    <meta property="og:image:height" content="500" />
+    <meta property="og:image:alt" content={`${site.name} · ${site.tagline}`} />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@500;700&display=swap"
     />
 
     {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
@@ -99,7 +117,7 @@ const jsonLd = [localBusiness, ...schema];
     <header class="site-header">
       <div class="wrap nav">
         <a class="logo" href="/" aria-label="EC Consultoria, página inicial">
-          <span class="logo-mark" aria-hidden="true">EC</span><span class="logo-text">EC Consultoria</span>
+          <Logo />
         </a>
         <nav class="links" aria-label="Principal">
           {nav.map((item) => (
@@ -123,7 +141,11 @@ const jsonLd = [localBusiness, ...schema];
 
     <footer class="site-footer">
       <div class="wrap">
-        <span class="legal">{site.name} · {site.legalName} · CNPJ {site.cnpj}</span>
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="EC Consultoria, página inicial"><Logo tagline /></a>
+          <span class="legal">{site.legalName} · CNPJ {site.cnpj}</span>
+          <span class="legal">Atendimento presencial na Grande Vitória/ES e remoto para todo o Brasil</span>
+        </div>
         <nav aria-label="Rodapé">
           <a href="/servicos">Serviços</a>
           <a href="/contato">Contato</a>

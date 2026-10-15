@@ -1,0 +1,30 @@
+---
+import { serviceArea } from '../data/site';
+---
+<div class="sec-head">
+  <div>
+    <span class="eyebrow">Onde atendemos</span>
+    <h2>Presencial na Grande Vitória. Remoto para todo o Brasil.</h2>
+  </div>
+  <p>Reuniões no escritório ou na sua empresa na Grande Vitória. Para outras cidades, a rotina inteira acontece online, com documentos e guias pela Área do Cliente.</p>
+</div>
+<div class="ledger area">
+  <div class="ledger-head">
+    <h3>Clientes atendidos hoje</h3>
+    <span class="eyebrow">cidade · atendimento</span>
+  </div>
+  <table>
+    <tbody>
+      {serviceArea.cities.map((c) => (
+        <tr>
+          <td>{c.name} <span class="uf">{c.state}</span></td>
+          <td><span class:list={['pill', c.mode === 'presencial' ? 'ok' : 'due']}>{c.mode}</span></td>
+        </tr>
+      ))}
+      <tr>
+        <td>Demais cidades do Brasil</td>
+        <td><span class="pill due">remoto</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

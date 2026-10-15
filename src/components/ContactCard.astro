@@ -13,15 +13,20 @@ const a = site.address;
   <div>
     <span class="eyebrow">Contato</span>
     <Tag>{heading}</Tag>
-    <p>Respondemos em horário comercial, normalmente no mesmo dia.</p>
+    <p>Respondemos em horário comercial, normalmente no mesmo dia. Atendimento presencial na Grande Vitória e remoto para todo o Brasil.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href={site.whatsapp.href} target="_blank" rel="noopener">Chamar no WhatsApp</a>
       <a class="btn btn-ghost" href={`mailto:${site.email}`}>Enviar e-mail</a>
     </div>
   </div>
   <dl class="channels">
-    <div><dt>WhatsApp</dt><dd><a href={site.whatsapp.href} target="_blank" rel="noopener">{site.whatsapp.display}</a></dd></div>
-    <div><dt>Telefone</dt><dd><a href={site.phone.href}>{site.phone.display}</a></dd></div>
+    <div>
+      <dt>Telefone e WhatsApp</dt>
+      <dd>
+        <a href={site.phone.href}>{site.phone.display}</a>
+        <span class="dd-note"><a href={site.whatsapp.href} target="_blank" rel="noopener">abrir no WhatsApp</a></span>
+      </dd>
+    </div>
     <div><dt>E-mail</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
     <div>
       <dt>Endereço</dt>
