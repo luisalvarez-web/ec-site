@@ -42,6 +42,14 @@ export function agenda(hoje: Date): Agenda {
   };
 }
 
+/** Mês de competência (o último mês fechado) e os 6 meses do gráfico, terminando nele. */
+export function resumoMeses(hoje: Date): { competencia: string; meses: string[] } {
+  const ano = hoje.getFullYear();
+  const mes = hoje.getMonth();
+  const meses = Array.from({ length: 6 }, (_, i) => abrev(new Date(ano, mes - 6 + i, 1).getMonth()));
+  return { competencia: MESES[new Date(ano, mes - 1, 1).getMonth()], meses };
+}
+
 /** Anos completos desde a fundação (fevereiro de 2016). */
 export function anosMercado(hoje: Date): number {
   const anos = hoje.getFullYear() - 2016;

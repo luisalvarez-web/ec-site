@@ -1,0 +1,86 @@
+---
+import { resumoMeses } from '../lib/datas';
+
+// Números fictícios de exemplo; só os nomes dos meses acompanham a data.
+const faturamento = [148, 156, 151, 163, 170, 184]; // R$ mil, últimos 6 meses
+const { competencia, meses } = resumoMeses(new Date());
+
+const W = 300;
+const H = 92;
+const base = 74; // linha de base das barras (espaço abaixo para os meses)
+const topo = 16; // espaço acima para o rótulo do último valor
+const max = Math.max(...faturamento);
+const passo = W / faturamento.length;
+const larg = 26;
+const barras = faturamento.map((v, i) => {
+  const h = ((base - topo) * v) / max;
+  const x = i * passo + (passo - larg) / 2;
+  return { v, x, y: base - h, h, cx: x + larg / 2 };
+});
+const ultima = barras[barras.length - 1];
+// Barra com topo arredondado (4px) e base reta, apoiada na linha de base.
+const barra = (b: (typeof barras)[number]) => {
+  const r = 4;
+  return `M${b.x} ${base}V${b.y + r}Q${b.x} ${b.y} ${b.x + r} ${b.y}H${b.x + larg - r}Q${b.x + larg} ${b.y} ${b.x + larg} ${b.y + r}V${base}Z`;
+};
+---
+<aside class="resumo" aria-label="Exemplo de resumo mensal enviado ao cliente" data-resumo>
+  <div class="resumo-head">
+    <div>
+      <h2>Resumo de <span data-resumo-comp>{competencia}</span></h2>
+      <span class="ledger-sub">balancete fechado</span>
+    </div>
+    <span class="eyebrow">exemplo</span>
+  </div>
+
+  <dl class="kpis">
+    <div><dt>Faturamento</dt><dd><b>R$ 184 mil</b><span class="delta up">▲ 8%</span></dd></div>
+    <div><dt>Lucro</dt><dd><b>R$ 31 mil</b><span class="delta up">▲ 12%</span></dd></div>
+    <div><dt>Impostos / receita</dt><dd><b>9,8%</b><span class="delta up">▼ 0,6 p.p.</span></dd></div>
+  </dl>
+
+  <figure class="spark">
+    <figcaption>Faturamento, últimos 6 meses (R$ mil)</figcaption>
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Faturamento dos últimos 6 meses: ${faturamento.join(', ')} mil reais`}>
+      <line x1="0" x2={W} y1={base} y2={base} class="axis" />
+      {barras.map((b, i) => (
+        <g class:list={['bar', { last: i === barras.length - 1 }]}>
+          <rect x={b.x - 6} y={topo - 4} width={larg + 12} height={base - topo + 4} class="hit" />
+          <path d={barra(b)} />
+          <title>{`R$ ${b.v} mil`}</title>
+        </g>
+      ))}
+      <text x={ultima.cx} y={ultima.y - 5} text-anchor="middle" class="val">{ultima.v}</text>
+      {barras.map((b, i) => (
+        <text x={b.cx} y={H - 4} text-anchor="middle" class="mes" data-resumo-mes={i}>{meses[i]}</text>
+      ))}
+    </svg>
+  </figure>
+
+  <div class="recado">
+    <span class="avatar" aria-hidden="true">EC</span>
+    <div class="balao">
+      <span class="quem">Seu contador</span>
+      <p>
+        Fechamos <span data-resumo-comp>{competencia}</span> com lucro 12% maior. A revisão do enquadramento no Simples
+        reduziu os impostos; vamos conversar sobre como usar essa folga no caixa?
+      </p>
+    </div>
+  </div>
+
+  <div class="ledger-foot">Relatórios completos na Área do Cliente (Onvio).</div>
+</aside>
+
+<script>
+  import { resumoMeses } from '../lib/datas';
+  import { hoje } from '../lib/hoje';
+
+  const el = document.querySelector('[data-resumo]');
+  if (el) {
+    const { competencia, meses } = resumoMeses(hoje());
+    el.querySelectorAll('[data-resumo-comp]').forEach((n) => (n.textContent = competencia));
+    el.querySelectorAll<SVGTextElement>('[data-resumo-mes]').forEach((n) => {
+      n.textContent = meses[Number(n.dataset.resumoMes)];
+    });
+  }
+</script>
