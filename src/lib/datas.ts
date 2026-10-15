@@ -42,6 +42,12 @@ export function agenda(hoje: Date): Agenda {
   };
 }
 
+/** Anos completos desde a fundação (fevereiro de 2016). */
+export function anosMercado(hoje: Date): number {
+  const anos = hoje.getFullYear() - 2016;
+  return hoje.getMonth() >= 1 ? anos : anos - 1;
+}
+
 /** Ano da declaração do IRPF em foco: a entrega vai até 31 de maio; de junho em diante, a próxima. */
 export function anoIrpf(hoje: Date): number {
   return hoje.getMonth() <= 4 ? hoje.getFullYear() : hoje.getFullYear() + 1;

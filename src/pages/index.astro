@@ -4,6 +4,7 @@ import ContactCard from '../components/ContactCard.astro';
 import ServiceArea from '../components/ServiceArea.astro';
 import AgendaCard from '../components/AgendaCard.astro';
 import IrpfAno from '../components/IrpfAno.astro';
+import AnosMercado from '../components/AnosMercado.astro';
 import { site, services } from '../data/site';
 ---
 <Base
@@ -13,17 +14,17 @@ import { site, services } from '../data/site';
   <div class="wrap hero">
     <div>
       <span class="eyebrow">Escritório de contabilidade · Vitória/ES</span>
-      <h1>Contabilidade que <mark>fecha o mês</mark> com você, e não só com o Fisco.</h1>
-      <p class="lede">Rotinas contábeis, fiscais e de pessoal em dia, com leitura gerencial dos números para você decidir melhor. Atendimento direto com o contador responsável.</p>
+      <h1>Conhecimento que <mark>gera resultados</mark>, de quem conhece o seu negócio.</h1>
+      <p class="lede">Seu contador acompanha de perto a rotina da sua empresa: obrigações contábeis, fiscais e de pessoal em dia e números explicados para você decidir melhor. Presencial na Grande Vitória ou online em todo o Brasil.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href={site.whatsapp.href} target="_blank" rel="noopener">Falar no WhatsApp</a>
         <a class="btn btn-ghost" href="/servicos">Ver serviços</a>
       </div>
-      <div class="trust">
-        <span><b>2016</b> desde</span>
-        <span><b>{services.length}</b> frentes de serviço</span>
-        <span><b>BR</b> presencial na Grande Vitória, remoto em todo o Brasil</span>
-      </div>
+      <dl class="stats">
+        <div><dt>Experiência</dt><dd><b><AnosMercado /> anos</b><span>no mercado, desde 2016</span></dd></div>
+        <div><dt>Serviços</dt><dd><b>{services.length} frentes</b><span>contábil, fiscal, pessoal e mais</span></dd></div>
+        <div><dt>Atendimento</dt><dd><b>Todo o Brasil</b><span>presencial na Grande Vitória</span></dd></div>
+      </dl>
     </div>
 
     <AgendaCard />

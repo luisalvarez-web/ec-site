@@ -1,0 +1,12 @@
+---
+import { anosMercado } from '../lib/datas';
+---
+<span data-anos-mercado>{anosMercado(new Date())}</span>
+
+<script>
+  import { anosMercado } from '../lib/datas';
+  import { hoje } from '../lib/hoje';
+
+  const anos = String(anosMercado(hoje()));
+  document.querySelectorAll('[data-anos-mercado]').forEach((el) => (el.textContent = anos));
+</script>
