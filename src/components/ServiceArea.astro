@@ -1,30 +1,116 @@
 ---
+// Mapa: contornos dos estados de @svg-maps/brazil (Victor Cazanave, CC BY 4.0).
+import brazilModule from '@svg-maps/brazil';
 import { serviceArea } from '../data/site';
+
+type MapData = { viewBox: string; locations: { id: string; name: string; path: string }[] };
+const brazil: MapData = (brazilModule as any).default ?? brazilModule;
+
+// Posições no sistema de coordenadas do mapa (viewBox 0 0 613 639),
+// calculadas a partir da caixa de cada estado e da lat/long das cidades.
+const hub = { x: 525.6, y: 403.4 }; // Grande Vitória (Vitória, Serra, Vila Velha)
+const niteroi = { x: 482.8, y: 446.6 };
+
+// Destinos ilustrativos do atendimento online, espalhados pelas regiões do país.
+const remote = [
+  { x: 409, y: 330 }, // DF
+  { x: 396, y: 442 }, // SP
+  { x: 500, y: 290 }, // BA
+  { x: 560, y: 212 }, // PE
+  { x: 541, y: 165 }, // CE
+  { x: 335, y: 139 }, // PA
+  { x: 140, y: 142 }, // AM
+  { x: 282, y: 281 }, // MT
+  { x: 354, y: 476 }, // PR
+  { x: 318, y: 578 }, // RS
+];
+
+function arc(a: { x: number; y: number }, b: { x: number; y: number }, bend = 0.22) {
+  const mx = (a.x + b.x) / 2;
+  const my = (a.y + b.y) / 2;
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const cx = mx - dy * bend;
+  const cy = my + dx * bend;
+  return `M${a.x} ${a.y} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${b.x} ${b.y}`;
+}
+
+const highlighted = new Set(['es', 'rj']);
+const cityNames = serviceArea.cities.map((c) => (c.state === 'ES' ? c.name : `${c.name}/${c.state}`));
 ---
-<div class="sec-head">
-  <div>
+<div class="area">
+  <div class="area-text">
     <span class="eyebrow">Onde atendemos</span>
-    <h2>Presencial na Grande Vitória. Remoto para todo o Brasil.</h2>
+    <h2>Sua empresa em qualquer cidade. Seu contador sempre por perto.</h2>
+    <p class="area-lede">
+      Na Grande Vitória, recebemos você no escritório ou vamos até a sua empresa. Em qualquer outro lugar do Brasil,
+      o atendimento é 100% digital, com o mesmo contador e o mesmo cuidado.
+    </p>
+
+    <ul class="area-features">
+      <li>
+        <span class="area-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2" /><path d="M16 10.5l5-3v9l-5-3" /></svg>
+        </span>
+        <div><strong>Reuniões por vídeo</strong><span>Conversa direta com o contador responsável, no horário combinado.</span></div>
+      </li>
+      <li>
+        <span class="area-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z" /><path d="M14 3v5h5M10 13h6M10 17h6" /></svg>
+        </span>
+        <div><strong>Tudo na Área do Cliente</strong><span>Guias, folha e balancetes no portal; comprovantes enviados pelo celular.</span></div>
+      </li>
+      <li>
+        <span class="area-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+        </span>
+        <div><strong>Certificado digital e procurações</strong><span>Atuamos junto à Receita, Sefaz e prefeituras de forma eletrônica.</span></div>
+      </li>
+    </ul>
+
+    <div class="area-cities">
+      <span class="eyebrow">Clientes hoje em</span>
+      <ul>
+        {cityNames.map((n) => <li>{n}</li>)}
+        <li class="you">e onde você estiver</li>
+      </ul>
+    </div>
   </div>
-  <p>Reuniões no escritório ou na sua empresa na Grande Vitória. Para outras cidades, a rotina inteira acontece online, com documentos e guias pela Área do Cliente.</p>
-</div>
-<div class="ledger area">
-  <div class="ledger-head">
-    <h3>Clientes atendidos hoje</h3>
-    <span class="eyebrow">cidade · atendimento</span>
-  </div>
-  <table>
-    <tbody>
-      {serviceArea.cities.map((c) => (
-        <tr>
-          <td>{c.name} <span class="uf">{c.state}</span></td>
-          <td><span class:list={['pill', c.mode === 'presencial' ? 'ok' : 'due']}>{c.mode}</span></td>
-        </tr>
-      ))}
-      <tr>
-        <td>Demais cidades do Brasil</td>
-        <td><span class="pill due">remoto</span></td>
-      </tr>
-    </tbody>
-  </table>
+
+  <figure class="area-map">
+    <svg viewBox={brazil.viewBox} role="img" aria-labelledby="mapa-titulo">
+      <title id="mapa-titulo">
+        Mapa do Brasil: atendimento presencial na Grande Vitória (ES), cliente em Niterói (RJ) e atendimento online em todas as regiões.
+      </title>
+      <g class="states">
+        {brazil.locations.map((s) => (
+          <path d={s.path} class:list={{ on: highlighted.has(s.id) }}><title>{s.name}</title></path>
+        ))}
+      </g>
+      <g class="routes">
+        {remote.map((r, i) => <path d={arc(hub, r)} style={`--i:${i}`} />)}
+      </g>
+      <g class="targets">
+        {remote.map((r, i) => <circle cx={r.x} cy={r.y} r="4.5" style={`--i:${i}`} />)}
+      </g>
+      <path class="route-client" d={arc(hub, niteroi, 0.35)} />
+      <g class="pin pin-client" transform={`translate(${niteroi.x} ${niteroi.y})`}>
+        <circle class="ring" r="9" />
+        <circle class="dot" r="7" />
+        <text x="12" y="28">Niterói</text>
+      </g>
+      <g class="pin pin-hub" transform={`translate(${hub.x} ${hub.y})`}>
+        <circle class="ring" r="12" />
+        <circle class="ring ring-2" r="12" />
+        <circle class="dot" r="10" />
+        <text x="20" y="-4"><tspan x="20">Grande</tspan><tspan x="20" dy="21">Vitória</tspan></text>
+      </g>
+    </svg>
+    <figcaption>
+      <span><i class="lg lg-hub"></i>Presencial</span>
+      <span><i class="lg lg-client"></i>Cliente remoto</span>
+      <span><i class="lg lg-online"></i>Online em todo o Brasil</span>
+    </figcaption>
+    <small class="area-credit">Mapa: svg-maps (CC BY 4.0)</small>
+  </figure>
 </div>
