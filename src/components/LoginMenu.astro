@@ -1,0 +1,36 @@
+---
+import { logins } from '../data/site';
+---
+<details class="login" data-login>
+  <summary class="btn btn-primary btn-sm">
+    Entrar
+    <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" /></svg>
+  </summary>
+  <div class="login-panel">
+    {logins.map((l) => (
+      <a href={l.href} target="_blank" rel="noopener">
+        <strong>{l.title}<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5h5v5M9.5 2.5 3 9" /></svg></strong>
+        <span>{l.desc}</span>
+      </a>
+    ))}
+  </div>
+</details>
+
+<script>
+  // Fecha o menu ao clicar fora ou apertar Esc.
+  const menus = document.querySelectorAll<HTMLDetailsElement>('details[data-login], details.menu');
+  document.addEventListener('click', (e) => {
+    menus.forEach((m) => {
+      if (m.open && !m.contains(e.target as Node)) m.open = false;
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    menus.forEach((m) => {
+      if (m.open) {
+        m.open = false;
+        m.querySelector('summary')?.focus();
+      }
+    });
+  });
+</script>

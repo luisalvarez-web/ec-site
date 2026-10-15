@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
+import LoginMenu from '../components/LoginMenu.astro';
 import { site, nav, services, serviceArea } from '../data/site';
 
 interface Props {
@@ -131,7 +132,7 @@ const jsonLd = [localBusiness, ...schema];
             {nav.map((item) => <a href={item.href}>{item.label}</a>)}
           </nav>
         </details>
-        <a class="btn btn-primary btn-sm" href={site.onvio} target="_blank" rel="noopener">Área do Cliente</a>
+        <LoginMenu />
       </div>
     </header>
 
@@ -151,6 +152,7 @@ const jsonLd = [localBusiness, ...schema];
           <a href="/contato">Contato</a>
           <a href="/faq">FAQ</a>
           <a href="/politica-de-privacidade">Política de Privacidade</a>
+          <a class="staff" href={site.equipe} target="_blank" rel="noopener nofollow">Colaboradores</a>
         </nav>
       </div>
     </footer>

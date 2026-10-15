@@ -6,6 +6,9 @@ export const site = {
   url: 'https://ec-consultoria.com',
   foundingDate: '2016-02',
   onvio: 'https://onvio.com.br/clientcenter/company/293313ACFCAD44E1A627AC57CE66E9A6',
+  portal: 'https://app.ec-consultoria.com/portal',
+  // Acesso da equipe (sistema interno), linkado só no rodapé.
+  equipe: 'https://app.ec-consultoria.com',
   // O WhatsApp do escritório é o mesmo número do telefone fixo.
   phone: { display: '(27) 3191-4636', href: 'tel:+552731914636', e164: '+55-27-3191-4636' },
   whatsapp: { display: '(27) 3191-4636', href: 'https://wa.me/552731914636' },
@@ -31,6 +34,12 @@ export const serviceArea = {
     { name: 'Niterói', state: 'RJ', stateName: 'Rio de Janeiro', mode: 'remoto' },
   ],
 };
+
+// Opções do botão "Entrar" (cabeçalho e menu do celular).
+export const logins = [
+  { href: site.portal, title: 'Portal EC', desc: 'Documentos, checklist do IRPF e solicitações ao escritório' },
+  { href: site.onvio, title: 'Onvio', desc: 'Guias de impostos, folha de pagamento e relatórios contábeis' },
+];
 
 export const nav = [
   { href: '/servicos', label: 'Serviços' },
@@ -171,7 +180,7 @@ export const services: Service[] = [
 export const faq: { q: string; a: string }[] = [
   {
     q: 'Vocês atendem apenas empresas de Vitória?',
-    a: 'Não. O atendimento é presencial na Grande Vitória e remoto para todo o Brasil, com documentos e guias trocados pela Área do Cliente. Hoje temos clientes em Vitória, Serra, Vila Velha e Niterói (RJ).',
+    a: 'Não. O atendimento é presencial na Grande Vitória e remoto para todo o Brasil, com documentos e guias trocados pelo Portal EC e pelo Onvio. Hoje temos clientes em Vitória, Serra, Vila Velha e Niterói (RJ).',
   },
   {
     q: 'Vocês atendem ONGs e entidades sem fins lucrativos?',
@@ -182,8 +191,8 @@ export const faq: { q: string; a: string }[] = [
     a: 'Nós conduzimos a migração: solicitamos a documentação ao escritório anterior, assumimos as procurações eletrônicas e acertamos o calendário com você, sem interromper as obrigações da empresa.',
   },
   {
-    q: 'O que é a Área do Cliente?',
-    a: 'É o portal Onvio, onde você acessa guias de impostos, folha de pagamento, balancetes e envia documentos para o escritório. O acesso é criado pela nossa equipe depois da contratação.',
+    q: 'Como acesso o Portal EC e o Onvio?',
+    a: 'Pelo botão "Entrar", no topo do site. No Portal EC você envia documentos, acompanha o checklist do IRPF e faz solicitações ao escritório; no Onvio ficam guias de impostos, folha de pagamento e relatórios contábeis. Os acessos são criados pela nossa equipe depois da contratação.',
   },
   {
     q: 'Quais regimes tributários vocês atendem?',

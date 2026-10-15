@@ -61,6 +61,20 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-he
 }
 @media (max-width: 420px) { .brand-name { display: none } .brand-band { padding-right: 3px } }
 
+/* botão Entrar com lista de portais */
+.login { position: relative; flex: none }
+.login summary { list-style: none; cursor: pointer; user-select: none }
+.login summary::-webkit-details-marker { display: none }
+.login .chev { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .15s }
+.login[open] .chev { transform: rotate(180deg) }
+.login-panel { position: absolute; right: 0; top: calc(100% + 10px); width: min(300px, calc(100vw - 32px)); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 6px; display: grid; box-shadow: 0 18px 40px -24px rgba(0, 0, 255, .3); z-index: 20 }
+.login-panel a { display: grid; gap: 2px; text-decoration: none; padding: 10px 12px; border-radius: 8px }
+.login-panel a:hover, .login-panel a:focus-visible { background: var(--petrol-2) }
+.login-panel strong { display: inline-flex; align-items: center; gap: 6px; font-weight: 600 }
+.login-panel strong svg { width: 11px; height: 11px; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round }
+.login-panel span { font-size: .84rem; color: var(--muted); line-height: 1.35 }
+footer.site-footer nav .staff { opacity: .75 }
+
 .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 11px 20px; font-size: .98rem; border: 1.5px solid transparent; transition: transform .15s ease, background .15s }
 .btn:hover { transform: translateY(-1px) }
 .btn-primary { background: var(--petrol); color: var(--bg) }
