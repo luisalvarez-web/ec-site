@@ -86,6 +86,7 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-he
 .ledger { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px -24px rgba(0, 0, 255, .3); overflow: hidden }
 .ledger-head { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 20px; border-bottom: 1px solid var(--line) }
 .ledger-head h2, .ledger-head h3 { font-size: 1.02rem }
+.ledger-sub { display: block; margin-top: 3px; font-family: var(--mono); font-size: .74rem; color: var(--muted) }
 .ledger table { width: 100%; border-collapse: collapse; font-size: .93rem; font-variant-numeric: tabular-nums }
 .ledger td { padding: 11px 20px; border-bottom: 1px dashed var(--line) }
 .ledger td:last-child { text-align: right; font-family: var(--mono); font-size: .84rem; white-space: nowrap }

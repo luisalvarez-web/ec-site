@@ -1,0 +1,12 @@
+---
+import { anoIrpf } from '../lib/datas';
+---
+<span data-irpf-ano>{anoIrpf(new Date())}</span>
+
+<script>
+  import { anoIrpf } from '../lib/datas';
+  import { hoje } from '../lib/hoje';
+
+  const ano = String(anoIrpf(hoje()));
+  document.querySelectorAll('[data-irpf-ano]').forEach((el) => (el.textContent = ano));
+</script>

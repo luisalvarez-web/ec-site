@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ContactCard from '../components/ContactCard.astro';
+import IrpfAno from '../components/IrpfAno.astro';
 import { site } from '../data/site';
 
 const docs = [
@@ -33,7 +34,7 @@ const schema = [
 >
   <div class="page-hero">
     <div class="wrap">
-      <span class="eyebrow">IRPF 2027</span>
+      <span class="eyebrow">IRPF <IrpfAno /></span>
       <h1>Seu imposto de renda, sem caçar documento em março.</h1>
       <p class="lede">Declaração completa, deduções bem aproveitadas e acompanhamento junto à Receita Federal depois da entrega.</p>
     </div>
@@ -107,7 +108,7 @@ const schema = [
 
   <section>
     <div class="wrap">
-      <ContactCard heading="Quer garantir sua vaga para o IRPF 2027?" />
+      <ContactCard heading="Quer fazer seu imposto de renda com a gente?" />
     </div>
   </section>
 </Base>

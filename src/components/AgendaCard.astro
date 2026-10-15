@@ -1,0 +1,50 @@
+---
+import { agenda } from '../lib/datas';
+
+// Texto inicial com a data do build; o script abaixo refaz com a data do visitante.
+const a = agenda(new Date());
+---
+<aside class="ledger" aria-label="Exemplo de agenda fiscal" data-agenda>
+  <div class="ledger-head">
+    <div>
+      <h2>Agenda do cliente · <span data-agenda-titulo>{a.titulo}</span></h2>
+      <span class="ledger-sub">competência <span data-agenda-comp>{a.competencia}</span></span>
+    </div>
+    <span class="eyebrow">exemplo</span>
+  </div>
+  <table>
+    <tbody data-agenda-itens>
+      {a.itens.map((i) => (
+        <tr><td>{i.label}</td><td><span class:list={['pill', i.ok ? 'ok' : 'due']}>{i.status}</span></td></tr>
+      ))}
+    </tbody>
+  </table>
+  <div class="ledger-foot">Guias e relatórios ficam na Área do Cliente (Onvio).</div>
+</aside>
+
+<script>
+  import { agenda } from '../lib/datas';
+  import { hoje } from '../lib/hoje';
+
+  const el = document.querySelector<HTMLElement>('[data-agenda]');
+  if (el) {
+    const a = agenda(hoje());
+    el.querySelector('[data-agenda-titulo]')!.textContent = a.titulo;
+    el.querySelector('[data-agenda-comp]')!.textContent = a.competencia;
+    const tbody = el.querySelector('[data-agenda-itens]')!;
+    tbody.replaceChildren(
+      ...a.itens.map((i) => {
+        const tr = document.createElement('tr');
+        const label = document.createElement('td');
+        label.textContent = i.label;
+        const cell = document.createElement('td');
+        const pill = document.createElement('span');
+        pill.className = `pill ${i.ok ? 'ok' : 'due'}`;
+        pill.textContent = i.status;
+        cell.append(pill);
+        tr.append(label, cell);
+        return tr;
+      }),
+    );
+  }
+</script>

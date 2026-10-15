@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import ContactCard from '../components/ContactCard.astro';
 import ServiceArea from '../components/ServiceArea.astro';
+import AgendaCard from '../components/AgendaCard.astro';
+import IrpfAno from '../components/IrpfAno.astro';
 import { site, services } from '../data/site';
 ---
 <Base
@@ -24,22 +26,7 @@ import { site, services } from '../data/site';
       </div>
     </div>
 
-    <aside class="ledger" aria-label="Exemplo de agenda fiscal">
-      <div class="ledger-head">
-        <h2>Agenda do cliente · out/2026</h2>
-        <span class="eyebrow">exemplo</span>
-      </div>
-      <table>
-        <tbody>
-          <tr><td>Folha de pagamento · eSocial</td><td><span class="pill ok">enviado</span></td></tr>
-          <tr><td>EFD-Reinf</td><td><span class="pill ok">enviado</span></td></tr>
-          <tr><td>DAS · Simples Nacional</td><td><span class="pill due">vence 20/10</span></td></tr>
-          <tr><td>FGTS Digital</td><td><span class="pill due">vence 20/10</span></td></tr>
-          <tr><td>Balancete de setembro</td><td><span class="pill ok">disponível</span></td></tr>
-        </tbody>
-      </table>
-      <div class="ledger-foot">Guias e relatórios ficam na Área do Cliente (Onvio).</div>
-    </aside>
+    <AgendaCard />
   </div>
 
   <div class="band">
@@ -97,7 +84,7 @@ import { site, services } from '../data/site';
   <section class="block tight">
     <div class="wrap irpf">
       <div>
-        <span class="eyebrow">IRPF 2027</span>
+        <span class="eyebrow">IRPF <IrpfAno /></span>
         <h2>Seu imposto de renda, sem caçar documento em março.</h2>
         <p>No Portal EC você recebe um checklist feito para o seu caso, envia os comprovantes e acompanha cada etapa até a transmissão.</p>
         <div class="cta-row">
