@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Assinatura de E-mail — EC Consultoria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --azul: #0000FF; --sombra: #7F7FFF; --tinta: #0F1A2E; --cinza: #56627A; --linha: #D6DDEA; --fundo: #F4F6FA; --ambar: #E0A82E }
+  * { box-sizing: border-box }
+  body { margin: 0; background: var(--fundo); color: var(--tinta); font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.5 }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 16px 64px }
+  h1 { font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 40px); letter-spacing: -.02em; margin: 14px 0 6px; line-height: 1.15 }
+  h1 span { background: var(--azul); color: #fff; padding: 0 .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
+  h2 { font-family: Montserrat, sans-serif; font-weight: 700; font-size: 17px; margin: 0 0 14px }
+  .lead { color: var(--cinza); max-width: 40em; margin: 0 0 28px }
+  .grid { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 24px; align-items: start }
+  .card { background: #fff; border: 1px solid var(--linha); border-radius: 12px; padding: 22px }
+  label { display: block; font-size: 13px; font-weight: 600; margin: 0 0 4px }
+  label small { font-weight: 400; color: var(--cinza) }
+  input { width: 100%; font: inherit; font-size: 15px; padding: 9px 11px; border: 1.5px solid var(--linha); border-radius: 8px; margin-bottom: 14px; background: #fff; color: var(--tinta) }
+  input:focus { outline: 2px solid var(--azul); outline-offset: 1px; border-color: transparent }
+  .preview { background: #fff; border: 1px solid var(--linha); border-radius: 12px; overflow: hidden }
+  .preview-bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--linha); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--cinza) }
+  .preview-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--linha) }
+  .preview-body { padding: 26px 28px 30px; overflow-x: auto }
+  .msg { color: var(--cinza); margin: 0 0 22px; font-size: 15px }
+  .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px }
+  button { font: inherit; font-weight: 600; font-size: 15px; border-radius: 999px; padding: 10px 20px; cursor: pointer; border: 1.5px solid var(--linha); background: #fff; color: var(--tinta) }
+  button.primario { background: var(--azul); border-color: var(--azul); color: #fff }
+  button:focus-visible { outline: 2px solid var(--ambar); outline-offset: 3px }
+  .aviso { font-size: 14px; color: #1E7A52; min-height: 1.5em; margin-top: 10px }
+  .passos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px }
+  .passos ol { margin: 0; padding-left: 18px; font-size: 14px; color: var(--cinza) }
+  .passos li { margin-bottom: 4px }
+  .num { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--cinza) }
+  textarea { width: 100%; height: 140px; font-family: "IBM Plex Mono", monospace; font-size: 12px; border: 1px solid var(--linha); border-radius: 8px; padding: 10px; margin-top: 12px; display: none }
+  @media (max-width: 860px) { .grid, .passos { grid-template-columns: 1fr } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="num">EC Consultoria · Manual da Marca</div>
+  <h1>Assinatura de <span>e-mail</span></h1>
+  <p class="lead">Preencha seus dados, copie a assinatura e cole nas configurações do seu e-mail. O logo animado já está hospedado no site da EC.</p>
+
+  <div class="grid">
+    <form class="card" id="form" autocomplete="off">
+      <h2>Seus dados</h2>
+      <label for="nome">Nome</label>
+      <input id="nome" value="Nome Sobrenome">
+      <label for="cargo">Cargo</label>
+      <input id="cargo" value="Contador">
+      <label for="registro">Registro profissional <small>(opcional)</small></label>
+      <input id="registro" placeholder="CRC-ES 000000/O">
+      <label for="celular">Celular / WhatsApp pessoal <small>(opcional)</small></label>
+      <input id="celular" placeholder="(27) 99999-9999">
+      <label for="email">E-mail</label>
+      <input id="email" value="contato@ec-consultoria.com">
+    </form>
+
+    <div>
+      <div class="preview">
+        <div class="preview-bar"><i></i><i></i><i></i><span style="margin-left:8px">Nova mensagem</span></div>
+        <div class="preview-body">
+          <p class="msg">Bom dia! Segue em anexo o relatório do mês.<br><br>Atenciosamente,</p>
+          <div id="assinatura"></div>
+        </div>
+      </div>
+      <div class="acoes">
+        <button class="primario" type="button" id="copiar">Copiar assinatura</button>
+        <button type="button" id="copiarHtml">Copiar código HTML</button>
+      </div>
+      <div class="aviso" id="aviso" role="status"></div>
+      <textarea id="codigo" readonly aria-label="Código HTML da assinatura"></textarea>
+    </div>
+  </div>
+
+  <div class="passos">
+    <div class="card"><h2>Gmail</h2><ol><li>Configurações (engrenagem) › Ver todas as configurações.</li><li>Aba Geral › Assinatura › Criar nova.</li><li>Cole com Ctrl+V e salve no fim da página.</li></ol></div>
+    <div class="card"><h2>Outlook (web e novo Outlook)</h2><ol><li>Configurações › Contas › Assinaturas.</li><li>Nova assinatura, cole com Ctrl+V.</li><li>Defina como padrão para novas mensagens e respostas.</li></ol></div>
+    <div class="card"><h2>Outlook clássico (Windows)</h2><ol><li>Arquivo › Opções › Email › Assinaturas.</li><li>Novo, cole com Ctrl+V e salve.</li><li>Ele mostra o logo parado (1º quadro do GIF), o que é esperado.</li></ol></div>
+  </div>
+</div>
+
+<script>
+  const SITE = 'https://ec-consultoria.com';
+  const LOGO = SITE + '/marca/email/ec-logo-assinatura.gif';
+  const LOGO_LOCAL = '../public/marca/email/ec-logo-assinatura.gif';
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const digitos = (s) => s.replace(/\D/g, '');
+
+  function montar(d, logo) {
+    const a = 'color:#0000FF;text-decoration:none';
+    const linhas = [];
+    linhas.push(`<a href="tel:+552731914636" style="${a}">(27) 3191-4636</a>`
+      + (d.celular ? ` &nbsp;·&nbsp; <a href="https://wa.me/55${digitos(d.celular)}" style="${a}">${esc(d.celular)}</a>` : '')
+      + ` &nbsp;·&nbsp; <a href="mailto:${esc(d.email)}" style="${a}">${esc(d.email)}</a>`);
+    linhas.push(`<span style="color:#56627A">Av. Nossa Senhora dos Navegantes, 451, sala 815 · Enseada do Suá · Vitória/ES</span>`);
+    linhas.push(`<span style="color:#E0A82E;font-size:14px">&#9679;</span> <a href="https://app.ec-consultoria.com/portal" style="color:#0F1A2E;font-weight:bold;text-decoration:none">Portal do cliente</a> &nbsp;·&nbsp; <a href="${SITE}" style="${a}">ec-consultoria.com</a>`);
+    return `<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,'Segoe UI',Helvetica,sans-serif;color:#0F1A2E;font-size:13px;line-height:1.5">
+<tr><td style="padding:0 0 10px 0"><span style="font-size:16px;font-weight:bold;color:#0F1A2E">${esc(d.nome)}</span><br><span style="color:#56627A">${esc(d.cargo)}${d.registro ? ' · ' + esc(d.registro) : ''}</span></td></tr>
+<tr><td style="padding:0 0 10px 0"><a href="${SITE}" style="text-decoration:none"><img src="${logo}" width="240" height="43" alt="EC Consultoria" style="display:block;border:0;width:240px;height:43px"></a></td></tr>
+<tr><td style="border-top:2px solid #0000FF;padding:8px 0 0 0;font-size:12px;line-height:1.7">${linhas.join('<br>')}</td></tr>
+</table>`;
+  }
+
+  const campos = ['nome', 'cargo', 'registro', 'celular', 'email'];
+  const dados = () => Object.fromEntries(campos.map((c) => [c, document.getElementById(c).value.trim()]));
+  const alvo = document.getElementById('assinatura');
+  function atualizar() {
+    alvo.innerHTML = montar(dados(), LOGO);
+    const img = alvo.querySelector('img');
+    // antes da publicação do site, mostra o arquivo local na pré-visualização
+    img.onerror = () => { img.onerror = null; img.src = LOGO_LOCAL; };
+    document.getElementById('codigo').value = montar(dados(), LOGO);
+  }
+  campos.forEach((c) => document.getElementById(c).addEventListener('input', atualizar));
+  atualizar();
+
+  const aviso = (t) => { const el = document.getElementById('aviso'); el.textContent = t; clearTimeout(aviso.t); aviso.t = setTimeout(() => (el.textContent = ''), 4000); };
+  document.getElementById('copiar').addEventListener('click', async () => {
+    const html = montar(dados(), LOGO);
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([alvo.innerText], { type: 'text/plain' }) })]);
+      aviso('Assinatura copiada. Cole nas configurações do seu e-mail.');
+    } catch {
+      // navegador sem ClipboardItem: seleciona a pré-visualização para Ctrl+C
+      // a cópia precisa levar o endereço público do logo, não o arquivo local
+      const img = alvo.querySelector('img'); img.onerror = null; img.setAttribute('src', LOGO);
+      const sel = getSelection(); const rng = document.createRange(); rng.selectNodeContents(alvo); sel.removeAllRanges(); sel.addRange(rng);
+      const ok = document.execCommand && document.execCommand('copy');
+      aviso(ok ? 'Assinatura copiada. Cole nas configurações do seu e-mail.' : 'Assinatura selecionada. Pressione Ctrl+C para copiar.');
+    }
+  });
+  document.getElementById('copiarHtml').addEventListener('click', async () => {
+    const ta = document.getElementById('codigo'); ta.style.display = 'block'; ta.select();
+    try { await navigator.clipboard.writeText(ta.value); aviso('Código HTML copiado.'); } catch { aviso('Código selecionado. Pressione Ctrl+C.'); }
+  });
+</script>
+</body>
+</html>
