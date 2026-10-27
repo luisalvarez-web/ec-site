@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
+<title>Linha de resultado</title>
+<path d="M0 336.5H1200" stroke="#D6DDEA" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M24 279.84H139.2V279.84H254.4V242.4H369.6V254.88H484.8V204.96H600V180H715.2V192.48H830.4V142.56H945.6V105.12H1060.8V61.44H1176" fill="none" stroke="#0000FF" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="139.2" cy="279.84" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="254.4" cy="242.4" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="369.6" cy="254.88" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="484.8" cy="204.96" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="600" cy="180" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="715.2" cy="192.48" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="830.4" cy="142.56" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="945.6" cy="105.12" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="1060.8" cy="61.44" r="9" fill="#FFFFFF" stroke="#0000FF" stroke-width="4"/>
+<circle cx="1176" cy="61.44" r="16" fill="#E0A82E"/>
+</svg>

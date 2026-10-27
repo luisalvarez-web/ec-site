@@ -37,12 +37,24 @@
   .box.soft { background: var(--fundo) }
   .box.photo { background: linear-gradient(135deg, #3B4A66, #8C7A5B 60%, #C9B48A) }
 
+  body { counter-reset: pg sec }
+  .pg { counter-increment: pg }
+  .pg-head { counter-increment: sec }
+  .sec::before { content: counter(sec, decimal-leading-zero) }
+  .pgn::before { content: counter(pg, decimal-leading-zero) }
+  .pg-foot span:first-child { display: inline-flex; align-items: center; gap: 8px }
+  .pg-foot img { height: 12px; width: auto }
+
   /* capa */
-  .capa { background: var(--azul); color: #fff; justify-content: space-between }
-  .capa h1 { font-size: 64px; font-weight: 800; letter-spacing: -.03em }
-  .capa .num, .capa .num b { color: #C8C8FF }
-  .capa-logo { width: 46%; min-width: 260px }
-  .capa p { color: #DCDCFF; font-size: 18px; max-width: 30em }
+  .capa { justify-content: space-between }
+  .capa > * { position: relative; z-index: 1; max-width: 54% }
+  .capa > .capa-painel { position: absolute; z-index: 0; max-width: none; top: 0; right: 0; bottom: 0; width: 44%; background: var(--fundo) }
+  .capa > .capa-cantoneira { position: absolute; z-index: 0; max-width: none; right: 0; bottom: 0; width: 44%; height: 100%; object-fit: cover; object-position: center bottom }
+  .capa-logo { width: 300px }
+  .capa .regua { width: 48px; height: 4px; background: var(--azul); margin-bottom: 18px }
+  .capa h1 { font-size: 64px; font-weight: 800; letter-spacing: -.03em; color: var(--tinta) }
+  .capa p { color: var(--cinza); font-size: 18px; max-width: 28em }
+
 
   /* cores */
   .swatch { border-radius: 10px; overflow: hidden; border: 1px solid var(--linha) }
@@ -63,10 +75,36 @@
   .dont .box::after { content: ""; position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; border-radius: 50%; background: #D3302F url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M7 7l8 8M15 7l-8 8' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") }
   .dont p { font-size: 13px; margin-top: 8px; color: var(--cinza) }
 
+  /* linguagem visual */
+  .tarja { font-family: var(--m); font-weight: 800; line-height: 1.32; letter-spacing: -.02em }
+  .tarja span { background: var(--azul); color: #fff; padding: .02em .2em .05em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
+  .tarja span.amb { background: var(--ambar); color: var(--tinta) }
+  .tarja.inv span { background: #fff; color: var(--azul) }
+  .eco { font-family: var(--m); font-weight: 800; color: var(--azul); text-shadow: .06em .06em 0 var(--sombra); letter-spacing: -.03em; line-height: 1 }
+  .eco.inv { color: #fff }
+  .ponto { display: inline-block; width: .32em; height: .32em; border-radius: 50%; background: var(--ambar); flex: none }
+  .eco-bloco { position: relative; width: 150px; aspect-ratio: 1 }
+  .eco-bloco::before { content: ""; position: absolute; inset: 12px -12px -12px 12px; background: var(--sombra) }
+  .eco-bloco span { position: absolute; inset: 0; background: var(--azul); color: #fff; font-family: var(--m); font-weight: 700; font-size: 17px; line-height: 1.2; padding: 16px; display: flex; align-items: flex-end }
+  .recursos > div { min-width: 0 }
+  .recursos b { display: block; font-family: var(--mono); font-weight: 500; font-size: 12px; color: var(--azul); margin-top: 14px }
+  .recursos h3 { font-size: 16px; margin-top: 2px }
+  .recursos p { font-size: 13px; color: var(--cinza); margin: 6px 0 0 }
+  .rec-prev { height: 150px; border: 1px solid var(--linha); border-radius: 10px; overflow: hidden; display: grid; place-items: center; padding: 14px }
+  .ambar-regra { margin-top: auto; display: flex; gap: 20px; align-items: center; border-top: 1px solid var(--linha); padding-top: 20px; font-size: 14.5px }
+  .ambar-regra p { margin: 0; max-width: 60em }
+  .grafico { width: 100%; display: flex; align-items: flex-end; gap: 14px; height: 170px; border-bottom: 1.5px solid var(--tinta); padding-bottom: 0; margin-bottom: 24px }
+  .grafico div { flex: 1 1 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; position: relative }
+  .grafico i { display: block; height: calc(var(--v) * 100%); background: var(--azul); border-radius: 6px 6px 0 0; box-shadow: 6px 6px 0 var(--lavanda) }
+  .grafico .amb i { background: var(--ambar) }
+  .grafico b { font-family: var(--mono); font-weight: 500; font-size: 12px; text-align: center; margin-bottom: 6px; color: var(--tinta) }
+  .grafico span { position: absolute; bottom: -22px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--cinza) }
+  .mock { position: relative; overflow: hidden; box-shadow: 0 14px 30px -18px rgba(15, 26, 46, .5); border: 1px solid var(--linha) }
+
   ul.lista { margin: 0; padding-left: 18px }
   ul.lista li { margin-bottom: 6px }
-  table.arq { width: 100%; border-collapse: collapse; font-size: 13.5px }
-  table.arq th, table.arq td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--linha); vertical-align: top }
+  table.arq { width: 100%; border-collapse: collapse; font-size: 12.5px }
+  table.arq th, table.arq td { text-align: left; padding: 5px 10px; border-bottom: 1px solid var(--linha); vertical-align: top }
   table.arq th { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--cinza); font-weight: 500 }
   table.arq code { font-family: var(--mono); font-size: 12.5px }
 
@@ -86,7 +124,7 @@
   @media (max-width: 900px) {
     .pg { aspect-ratio: auto; padding: 32px 20px; margin: 12px auto }
     .cols { grid-template-columns: 1fr !important }
-    .capa h1 { font-size: 42px }
+    .capa h1 { font-size: 42px } .capa > * { max-width: 100% } .capa > .capa-painel, .capa > .capa-cantoneira { opacity: .35 }
     .pg-head h2 { font-size: 24px }
   }
   @page { size: A4 landscape; margin: 0 }
@@ -101,18 +139,21 @@
 
 <!-- 01 capa -->
 <section class="pg capa">
-  <div class="num"><b>Manual de identidade visual</b> · versão 1.0 · outubro de 2026</div>
+  <div class="capa-painel" aria-hidden="true"></div>
+  <img class="capa-cantoneira" src="grafismos/svg/recorte-vertical-tons.svg" alt="" aria-hidden="true">
+  <img class="capa-logo" src="logos/svg/ec-horizontal-cor-assinatura.svg" alt="EC Consultoria">
   <div>
-    <img class="capa-logo" src="logos/svg/ec-horizontal-negativo.svg" alt="EC Consultoria">
-    <h1 style="margin-top:48px">Manual da Marca</h1>
-    <p style="margin-top:14px">Regras de uso do logotipo, cores, tipografia e aplicações da EC Consultoria. Use este guia sempre que a marca aparecer em peças impressas, digitais ou de sinalização.</p>
+    <div class="regua"></div>
+    <div class="num" style="margin-bottom:14px">Manual de identidade visual · versão 1.2 · outubro de 2026</div>
+    <h1 class="tarja" style="line-height:1.25">Manual da<br><span>Marca</span></h1>
+    <p style="margin-top:16px">Logotipo, cores, tipografia, linguagem visual e aplicações da EC Consultoria.</p>
   </div>
   <div class="num">Erudition Consulting Ltda · CNPJ 24.275.977/0001-80 · ec-consultoria.com</div>
 </section>
 
 <!-- 02 a marca -->
 <section class="pg">
-  <header class="pg-head"><h2>A marca</h2><span class="num"><b>01</b> / Conceito</span></header>
+  <header class="pg-head"><h2>A marca</h2><span class="num"><b class="sec"></b> / Conceito</span></header>
   <div class="cols" style="--n:2; align-items:center; flex:1">
     <div>
       <p class="lead">A EC Consultoria é um escritório de contabilidade e consultoria em Vitória (ES), que atende empresas e pessoas físicas na Grande Vitória e em todo o Brasil.</p>
@@ -124,12 +165,12 @@
       <img src="logos/svg/ec-horizontal-cor-assinatura.svg" alt="Logotipo EC Consultoria com assinatura">
     </div>
   </div>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>02</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 03 versões -->
 <section class="pg">
-  <header class="pg-head"><h2>Versões do logotipo</h2><span class="num"><b>02</b> / Assinaturas visuais</span></header>
+  <header class="pg-head"><h2>Versões do logotipo</h2><span class="num"><b class="sec"></b> / Assinaturas visuais</span></header>
   <div class="cols" style="--n:3; flex:1; grid-template-columns: 1.6fr 1fr .7fr">
     <div>
       <div class="box soft" style="height:240px; padding:36px"><img src="logos/svg/ec-horizontal-cor-assinatura.svg" alt="Versão horizontal"></div>
@@ -151,12 +192,12 @@
     <p style="font-size:14px; color:var(--cinza)"><strong style="color:var(--tinta)">Com ou sem assinatura.</strong> A frase “Conhecimento que gera resultados” acompanha o logotipo em peças institucionais. Retire-a quando o logo ficar abaixo do tamanho mínimo com assinatura (ver página 05) ou em espaços muito estreitos.</p>
     <p style="font-size:14px; color:var(--cinza)"><strong style="color:var(--tinta)">Texto vetorizado.</strong> Em todos os arquivos o nome e a assinatura estão convertidos em curvas: os arquivos abrem iguais em qualquer computador, sem precisar da fonte instalada.</p>
   </div>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>03</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 04 construção -->
 <section class="pg">
-  <header class="pg-head"><h2>Construção e área de proteção</h2><span class="num"><b>03</b> / Geometria</span></header>
+  <header class="pg-head"><h2>Construção e área de proteção</h2><span class="num"><b class="sec"></b> / Geometria</span></header>
   <div class="cols" style="--n:2; flex:1; grid-template-columns: 1.5fr 1fr; align-items:center">
     <div>
       <svg viewBox="-110 -110 1165 395" style="width:100%; display:block" role="img" aria-label="Diagrama de construção do logotipo">
@@ -198,12 +239,12 @@
       <p style="margin-top:14px"><strong>Área de proteção:</strong> mantenha pelo menos <strong>½X</strong> livre em todos os lados. Nenhum texto, imagem ou borda pode invadir esse espaço.</p>
     </div>
   </div>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>04</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 05 redução -->
 <section class="pg">
-  <header class="pg-head"><h2>Redução mínima</h2><span class="num"><b>04</b> / Legibilidade</span></header>
+  <header class="pg-head"><h2>Redução mínima</h2><span class="num"><b class="sec"></b> / Legibilidade</span></header>
   <p class="lead">Abaixo destes tamanhos o nome ou a assinatura deixam de ser legíveis. Medidas pela largura total do logotipo.</p>
   <div class="cols" style="--n:4; margin-top:28px; align-items:end">
     <div><div class="box soft" style="height:150px"><img src="logos/svg/ec-horizontal-cor-assinatura.svg" alt="" style="width:200px"></div><div class="cap">Horizontal com assinatura<br><b style="color:var(--tinta)">45 mm · 200 px</b></div></div>
@@ -212,12 +253,12 @@
     <div><div class="box soft" style="height:150px"><img src="logos/svg/ec-simbolo-cor.svg" alt="" style="width:24px"></div><div class="cap">Símbolo<br><b style="color:var(--tinta)">6 mm · 16 px</b></div></div>
   </div>
   <p style="margin-top:28px; font-size:14px; color:var(--cinza)">Para tamanhos de 16 a 32 px (favicon), use o ícone com cantos arredondados já publicado no site (<code style="font-family:var(--mono)">public/favicon.svg</code>), que tem barras ajustadas para telas pequenas.</p>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>05</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 06 cores -->
 <section class="pg">
-  <header class="pg-head"><h2>Cores</h2><span class="num"><b>05</b> / Paleta</span></header>
+  <header class="pg-head"><h2>Cores</h2><span class="num"><b class="sec"></b> / Paleta</span></header>
   <div class="cols" style="--n:3">
     <div class="swatch big"><div class="chip" style="background:#0000FF"></div><div class="info"><strong>Azul EC</strong><code>HEX #0000FF</code><code>RGB 0 · 0 · 255</code><code>CMYK 100 · 80 · 0 · 0*</code><code>Pantone 2728 C*</code></div></div>
     <div class="swatch big"><div class="chip" style="background:#7F7FFF"></div><div class="info"><strong>Azul Sombra</strong><code>HEX #7F7FFF</code><code>RGB 127 · 127 · 255</code><code>CMYK 50 · 40 · 0 · 0*</code><code>Azul EC a 50%</code></div></div>
@@ -230,12 +271,12 @@
     <div class="swatch"><div class="chip" style="background:#E0A82E; height:70px"></div><div class="info"><strong>Âmbar</strong><code>#E0A82E · destaque pontual</code></div></div>
   </div>
   <p style="margin-top:18px; font-size:13px; color:var(--cinza)">Azul EC, Azul Sombra, Tinta e Branco são as cores do logotipo. Névoa, Lavanda e Âmbar são cores de apoio (site, apresentações, gráficos); o Âmbar nunca é aplicado ao logotipo. <br>* O azul puro de tela (#0000FF) fica fora do espaço de cor da impressão; os valores CMYK e Pantone são a aproximação mais próxima. Peça prova de cor à gráfica antes de imprimir tiragens grandes.</p>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>06</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 07 tipografia -->
 <section class="pg">
-  <header class="pg-head"><h2>Tipografia</h2><span class="num"><b>06</b> / Fontes</span></header>
+  <header class="pg-head"><h2>Tipografia</h2><span class="num"><b class="sec"></b> / Fontes</span></header>
   <div class="cols" style="--n:2">
     <div class="type-spec">
       <div class="cap" style="margin:0">Fonte da marca</div>
@@ -261,12 +302,210 @@
       <p style="font-size:15px; margin-top:10px">Onde não for possível instalar as fontes (Word, Outlook, PowerPoint em máquinas de terceiros) use <strong>Segoe UI</strong> ou <strong>Arial</strong>. Todas as fontes acima são gratuitas no Google Fonts (licença OFL).</p>
     </div>
   </div>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>07</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
+</section>
+
+<!-- linguagem visual -->
+<section class="pg">
+  <header class="pg-head"><h2>Linguagem visual</h2><span class="num"><b class="sec"></b> / Visão geral</span></header>
+  <p class="lead" style="margin-bottom:26px">O logotipo assina; a linguagem visual é o que torna uma peça da EC reconhecível mesmo sem ele. São cinco recursos, todos tirados do próprio logo: a <strong>faixa</strong>, a <strong>sombra deslocada</strong>, as <strong>barras</strong>, o <strong>quadrado</strong> e o <strong>crescimento</strong>.</p>
+  <div class="cols recursos" style="--n:5">
+    <div>
+      <div class="rec-prev" style="background:#fff"><div class="tarja" style="font-size:17px"><span>Conhecimento</span><br><span>que gera</span> <span class="amb">resultado</span></div></div>
+      <b>01</b><h3>Tarja</h3><p>A faixa do logo vira marcador de título. Palavras-chave entram em tarjas azuis.</p>
+    </div>
+    <div>
+      <div class="rec-prev" style="background:#fff"><div class="eco" style="font-size:60px">+38%</div></div>
+      <b>02</b><h3>Eco</h3><p>A sombra do símbolo se aplica a números, blocos e fotos: tudo tem um eco deslocado.</p>
+    </div>
+    <div>
+      <div class="rec-prev" style="background:var(--fundo); padding:0"><img src="grafismos/svg/recorte-escada-cor.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div>
+      <b>03</b><h3>Recorte</h3><p>O símbolo ampliado até virar paisagem. Só fragmentos aparecem, sempre sangrando.</p>
+    </div>
+    <div>
+      <div class="rec-prev" style="padding:0"><img src="grafismos/svg/mosaico-claro.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div>
+      <b>04</b><h3>Mosaico</h3><p>O quadrado do símbolo como módulo: medidores, ecos e pontos que se adensam para a direita.</p>
+    </div>
+    <div>
+      <div class="rec-prev" style="background:#fff; padding:14px 0"><img src="grafismos/svg/linha-resultado-azul.svg" alt="" style="width:100%"></div>
+      <b>05</b><h3>Linha de resultado</h3><p>Uma trajetória em degraus que fecha para cima, terminando no ponto âmbar.</p>
+    </div>
+  </div>
+  <div class="ambar-regra">
+    <span class="ponto" style="font-size:44px"></span>
+    <p><strong>O ponto âmbar é o resultado.</strong> O Âmbar aparece no máximo uma vez por peça e sempre marca o que importa para o cliente: o prazo, o valor economizado, a conclusão, o botão de ação. Nunca é usado como cor de fundo nem no logotipo.</p>
+  </div>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
+</section>
+
+<!-- tarja e eco -->
+<section class="pg">
+  <header class="pg-head"><h2>Tarja e Eco</h2><span class="num"><b class="sec"></b> / Recursos tipográficos</span></header>
+  <div class="cols" style="--n:2; gap:48px; flex:1">
+    <div style="display:flex; flex-direction:column">
+      <div class="box soft" style="height:250px; place-items:center start; padding:32px 36px">
+        <div class="tarja" style="font-size:40px; color:var(--tinta)">Seu imposto<br><span>no lugar certo,</span><br>no <span class="amb">prazo certo.</span></div>
+      </div>
+      <h3 style="margin-top:18px; font-size:18px">Tarja</h3>
+      <ul class="lista" style="font-size:14px; margin-top:8px">
+        <li>Montserrat ExtraBold, entrelinha 1,3. A tarja tem a altura da linha e respiro lateral de 0,22 em.</li>
+        <li>Tarja em <strong>Azul EC com texto branco</strong>; no máximo uma tarja <strong>Âmbar com texto Tinta</strong> por peça.</li>
+        <li>Destaque de 1 a 4 palavras. Uma frase inteira em tarja perde a força.</li>
+        <li>Sobre fundo azul, a tarja fica branca com texto Azul EC.</li>
+      </ul>
+    </div>
+    <div style="display:flex; flex-direction:column">
+      <div class="box soft" style="height:250px; grid-template-columns:auto 1fr; gap:36px; padding:32px 36px; place-items:center">
+        <div class="eco" style="font-size:88px; white-space:nowrap">R$ 0</div>
+        <div class="eco-bloco"><span>Multas<br>em 2026</span></div>
+      </div>
+      <h3 style="margin-top:18px; font-size:18px">Eco</h3>
+      <ul class="lista" style="font-size:14px; margin-top:8px">
+        <li>Deslocamento sempre <strong>para baixo e para a direita</strong>, igual à sombra das barras do símbolo.</li>
+        <li>Em números: 6% do tamanho da fonte (text-shadow .06em .06em, sem desfoque).</li>
+        <li>Em blocos e fotos: 8% do lado menor, em Azul Sombra ou Lavanda.</li>
+        <li>Nunca use sombra desfocada ou em outro ângulo: o eco é um bloco sólido.</li>
+      </ul>
+    </div>
+  </div>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
+</section>
+
+<!-- recorte e mosaico -->
+<section class="pg">
+  <header class="pg-head"><h2>Recorte e Mosaico</h2><span class="num"><b class="sec"></b> / Supergráficos</span></header>
+  <div style="display:grid; grid-template-columns: 1.3fr 1.3fr .62fr; gap:20px">
+    <div><div class="box soft" style="height:190px; padding:0; overflow:hidden"><img src="grafismos/svg/recorte-topo-cor.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div><div class="cap">Recorte topo · cor</div></div>
+    <div><div class="box soft" style="height:190px; padding:0; overflow:hidden"><img src="grafismos/svg/recorte-escada-tons.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div><div class="cap">Recorte escada · tons</div></div>
+    <div><div class="box blue" style="height:190px; padding:0; overflow:hidden"><img src="grafismos/svg/recorte-vertical-branco.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div><div class="cap">Recorte vertical · branco</div></div>
+  </div>
+  <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:20px">
+    <div><div class="box" style="height:150px; padding:0; overflow:hidden"><img src="grafismos/svg/mosaico-claro.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div><div class="cap">Mosaico · claro</div></div>
+    <div><div class="box blue" style="height:150px; padding:0; overflow:hidden"><img src="grafismos/svg/mosaico-azul.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div><div class="cap">Mosaico · azul</div></div>
+    <div><div class="box" style="height:150px; padding:0; overflow:hidden"><img src="grafismos/svg/mosaico-mono.svg" alt="" style="width:100%; height:100%; object-fit:cover"></div><div class="cap">Mosaico · marca d’água</div></div>
+  </div>
+  <div class="cols" style="--n:2; margin-top:18px; font-size:14px">
+    <p><strong>Recorte.</strong> Amplie o símbolo de 4 a 12 vezes e enquadre só um trecho. As barras sempre encostam em pelo menos uma borda da peça. Use um recorte por peça, ocupando de um terço à metade da área.</p>
+    <p><strong>Mosaico.</strong> Módulos quadrados com medidores de ⅓, ⅔ ou cheio, ecos e pontos. Fica mais denso da esquerda para a direita. Use como faixa, metade da peça ou, na versão marca d’água, atrás de texto.</p>
+  </div>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
+</section>
+
+<!-- linha de resultado e dados -->
+<section class="pg">
+  <header class="pg-head"><h2>Linha de resultado e gráficos</h2><span class="num"><b class="sec"></b> / Dados</span></header>
+  <div class="cols" style="--n:2; grid-template-columns: 1.15fr 1fr; gap:40px">
+    <div>
+      <div class="box" style="padding:26px 24px 18px; display:block">
+        <div class="num" style="margin-bottom:6px">Faturamento acumulado · 2026</div>
+        <div class="eco" style="font-size:44px">R$ 1,2 mi</div>
+        <img src="grafismos/svg/linha-resultado-azul.svg" alt="" style="width:100%; margin-top:10px">
+      </div>
+      <h3 style="margin-top:16px; font-size:18px">Linha de resultado</h3>
+      <p style="font-size:14px; margin-top:6px">Linha em degraus (só horizontais e verticais), traço de 0,5% da largura, marcadores vazados e o ponto âmbar no fim. Funciona sozinha como grafismo ou com dados reais em relatórios.</p>
+    </div>
+    <div>
+      <div class="box" style="padding:22px 24px 16px; display:block">
+        <div class="num" style="margin-bottom:14px">Impostos pagos por mês · R$ mil</div>
+        <div class="grafico">
+          <div style="--v:.62"><i></i><span>jan</span></div>
+          <div style="--v:.55"><i></i><span>fev</span></div>
+          <div style="--v:.7"><i></i><span>mar</span></div>
+          <div style="--v:.48"><i></i><span>abr</span></div>
+          <div style="--v:.4"><i></i><span>mai</span></div>
+          <div class="amb" style="--v:.31"><b>−42%</b><i></i><span>jun</span></div>
+        </div>
+      </div>
+      <h3 style="margin-top:16px; font-size:18px">Gráficos e relatórios</h3>
+      <ul class="lista" style="font-size:14px; margin-top:6px">
+        <li>Barras com o topo arredondado e o eco em Lavanda.</li>
+        <li>Série principal em Azul EC; o dado que importa em Âmbar, com o valor em cima.</li>
+        <li>Rótulos e eixos em IBM Plex Mono; sem grades pesadas, só a linha de base.</li>
+      </ul>
+    </div>
+  </div>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
+</section>
+
+<!-- composição: redes sociais -->
+<section class="pg">
+  <header class="pg-head"><h2>Composição · redes sociais</h2><span class="num"><b class="sec"></b> / Exemplos</span></header>
+  <div style="display:flex; gap:28px; align-items:flex-end; justify-content:center; margin-top:auto; margin-bottom:auto">
+    <div style="width:340px">
+      <div class="mock" style="aspect-ratio:1; background:var(--azul); border-color:var(--azul)">
+        <img src="grafismos/svg/mosaico-azul.svg" alt="" style="position:absolute; left:0; top:0; width:100%; height:38%; object-fit:cover; object-position:right top">
+        <div style="position:absolute; left:8%; right:8%; bottom:9%">
+          <div class="tarja inv" style="font-size:25px; color:#fff">IRPF 2027:<br><span>comece agora</span><br>e evite a malha fina</div>
+          <img src="logos/svg/ec-horizontal-negativo.svg" alt="" style="width:40%; margin-top:18px">
+        </div>
+      </div>
+      <div class="cap">Post 1:1 · mosaico + tarja</div>
+    </div>
+    <div style="width:212px">
+      <div class="mock" style="aspect-ratio:9/16; background:var(--azul); border-color:var(--azul)">
+        <img src="grafismos/svg/recorte-vertical-branco.svg" alt="" style="position:absolute; right:-10%; bottom:0; width:86%">
+        <div style="position:absolute; left:10%; top:9%; right:10%">
+          <div class="num" style="color:#C8C8FF; font-size:8px">Restituição IRPF</div>
+          <div class="eco inv" style="font-size:44px; margin-top:6px">1º lote</div>
+          <div style="color:#fff; font-size:11px; margin-top:6px">sai em maio <span class="ponto" style="font-size:16px; vertical-align:-2px"></span></div>
+        </div>
+      </div>
+      <div class="cap">Story 9:16 · recorte + eco</div>
+    </div>
+    <div style="width:340px">
+      <div class="mock" style="aspect-ratio:1; background:#fff">
+        <div style="position:absolute; left:8%; top:8%; right:8%">
+          <img src="logos/svg/ec-horizontal-cor.svg" alt="" style="width:36%">
+          <div class="num" style="margin-top:20px; font-size:9px">Cliente do Simples Nacional · 12 meses</div>
+          <div class="eco" style="font-size:52px; margin-top:4px">−27%</div>
+          <div style="font-family:var(--m); font-weight:700; font-size:14px; margin-top:6px">de carga tributária após revisão de enquadramento</div>
+        </div>
+        <img src="grafismos/svg/linha-resultado-azul.svg" alt="" style="position:absolute; left:0; bottom:4%; width:100%">
+      </div>
+      <div class="cap">Post 1:1 · eco + linha de resultado</div>
+    </div>
+  </div>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
+</section>
+
+<!-- composição: institucional -->
+<section class="pg">
+  <header class="pg-head"><h2>Composição · institucional</h2><span class="num"><b class="sec"></b> / Exemplos</span></header>
+  <div style="display:grid; grid-template-columns: 1.75fr .8fr; gap:32px; align-items:end">
+    <div>
+      <div class="mock" style="aspect-ratio:16/9; background:#fff">
+        <img src="grafismos/svg/recorte-vertical-tons.svg" alt="" style="position:absolute; right:4%; bottom:0; height:100%">
+        <div style="position:absolute; left:6%; top:9%; width:58%">
+          <img src="logos/svg/ec-horizontal-cor.svg" alt="" style="width:40%">
+          <div class="tarja" style="font-size:34px; margin-top:13%; color:var(--tinta)">Planejamento<br><span>tributário</span> 2027</div>
+          <div class="num" style="margin-top:16px">Apresentação para clientes · janeiro</div>
+        </div>
+      </div>
+      <div class="cap">Capa de apresentação 16:9 · recorte em tons + tarja</div>
+    </div>
+    <div>
+      <div class="mock" style="aspect-ratio:210/297; background:#fff">
+        <img src="grafismos/svg/mosaico-claro.svg" alt="" style="position:absolute; left:0; bottom:0; width:100%; height:46%; object-fit:cover; object-position:left top">
+        <div style="position:absolute; left:10%; top:8%; right:10%">
+          <img src="logos/svg/ec-horizontal-cor.svg" alt="" style="width:62%">
+          <div class="num" style="margin-top:30%; font-size:8px">Relatório anual · 2026</div>
+          <div class="tarja" style="font-size:20px; margin-top:6px; color:var(--tinta)">Resultado<br><span>do exercício</span></div>
+        </div>
+      </div>
+      <div class="cap">Capa de relatório A4 · mosaico</div>
+    </div>
+  </div>
+  <div class="cols" style="--n:3; margin-top:24px; font-size:13.5px">
+    <p><strong>Hierarquia.</strong> Em cada peça, um recurso protagonista (recorte, mosaico ou linha) e um recurso tipográfico (tarja ou eco). Mais do que isso vira ruído.</p>
+    <p><strong>Equilíbrio de cor.</strong> Peças claras: 70% branco ou Névoa, 25% azuis, até 5% Âmbar. Peças azuis: o grafismo em branco e tons, nunca em Âmbar extenso.</p>
+    <p><strong>Logotipo.</strong> Sempre fora do grafismo, com a área de proteção livre, em um canto superior ou inferior esquerdo.</p>
+  </div>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 08 versões de cor -->
 <section class="pg">
-  <header class="pg-head"><h2>Versões de cor e fundos</h2><span class="num"><b>07</b> / Aplicação cromática</span></header>
+  <header class="pg-head"><h2>Versões de cor e fundos</h2><span class="num"><b class="sec"></b> / Aplicação cromática</span></header>
   <div class="cols" style="--n:4">
     <div><div class="box" style="height:150px"><img src="logos/svg/ec-horizontal-cor-assinatura.svg" alt=""></div><div class="cap">Positiva · fundos claros</div></div>
     <div><div class="box blue" style="height:150px"><img src="logos/svg/ec-horizontal-negativo-assinatura.svg" alt=""></div><div class="cap">Negativa · fundo Azul EC</div></div>
@@ -280,12 +519,12 @@
     <div><div class="box dark" style="height:150px"><img src="logos/svg/ec-vertical-negativo-assinatura.svg" alt="" style="max-height:110px"></div><div class="cap">Negativa · Tinta</div></div>
   </div>
   <p style="margin-top:20px; font-size:14px; color:var(--cinza)">As versões preto e branco são de uma cor só, com o quadrado e o nome vazados: servem para carimbo, gravação a laser, recorte em vinil, bordado e impressão em 1 cor. Sobre fotos, use áreas escuras e uniformes da imagem.</p>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>08</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 09 usos incorretos -->
 <section class="pg">
-  <header class="pg-head"><h2>Usos incorretos</h2><span class="num"><b>08</b> / O que evitar</span></header>
+  <header class="pg-head"><h2>Usos incorretos</h2><span class="num"><b class="sec"></b> / O que evitar</span></header>
   <div class="cols" style="--n:4; row-gap:24px">
     <div class="dont"><div class="box soft"><img src="logos/svg/ec-horizontal-cor.svg" alt="" style="width:80%; height:44px; object-fit:fill"></div><p>Não distorcer, achatar ou esticar.</p></div>
     <div class="dont"><div class="box soft"><img src="logos/svg/ec-horizontal-cor.svg" alt="" style="width:80%; filter:hue-rotate(140deg)"></div><p>Não trocar as cores da marca.</p></div>
@@ -296,15 +535,15 @@
     <div class="dont"><div class="box blue"><img src="logos/svg/ec-horizontal-cor.svg" alt="" style="width:80%"></div><p>Não usar a versão positiva sobre o Azul EC: a faixa desaparece.</p></div>
     <div class="dont"><div class="box soft" style="gap:8px"><div style="display:flex; align-items:center; gap:10px"><div style="font-family:var(--m); font-weight:700; color:var(--azul); font-size:18px; white-space:nowrap">EC Consultoria</div><img src="logos/svg/ec-simbolo-cor.svg" alt="" style="width:40px"></div></div><p>Não reorganizar elementos nem mudar proporções.</p></div>
   </div>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>09</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 10 aplicações -->
 <section class="pg">
-  <header class="pg-head"><h2>Aplicações</h2><span class="num"><b>09</b> / Exemplos</span></header>
+  <header class="pg-head"><h2>Aplicações</h2><span class="num"><b class="sec"></b> / Exemplos</span></header>
   <div class="cols" style="--n:2; align-items:start; max-width:900px">
     <div>
-      <div class="card front"><img src="logos/svg/ec-vertical-negativo-assinatura.svg" alt="" style="width:52%"></div>
+      <div class="card front"><img src="logos/svg/ec-vertical-negativo-assinatura.svg" alt="" style="width:40%; margin-bottom:12%"><img src="grafismos/svg/horizonte-sombra.svg" alt="" style="position:absolute; right:0; bottom:0; width:62%"></div>
       <div class="cap">Cartão de visita · frente (90 × 50 mm)</div>
     </div>
     <div>
@@ -330,12 +569,12 @@
       <div class="cap" style="margin:0">Avatar de redes sociais<br>ec-icone-app (recorte circular)</div>
     </div>
   </div>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>10</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 <!-- 11 arquivos -->
 <section class="pg">
-  <header class="pg-head"><h2>Arquivos da marca</h2><span class="num"><b>10</b> / Downloads</span></header>
+  <header class="pg-head"><h2>Arquivos da marca</h2><span class="num"><b class="sec"></b> / Downloads</span></header>
   <div class="cols" style="--n:2; grid-template-columns:1.4fr 1fr">
     <table class="arq">
       <thead><tr><th>Arquivo</th><th>Uso</th></tr></thead>
@@ -346,16 +585,23 @@
         <tr><td><code>ec-vertical-…-assinatura.svg</code></td><td>Logo vertical com assinatura</td></tr>
         <tr><td><code>ec-simbolo-{cor|negativo|preto|branco}.svg</code></td><td>Símbolo isolado</td></tr>
         <tr><td><code>ec-icone-app.svg</code></td><td>Avatar e ícone de aplicativo (512 × 512)</td></tr>
+        <tr><td><code>grafismos/degraus-{cor|branco|tons}.svg</code></td><td>Barras ascendentes (marcador, rodapé)</td></tr>
+        <tr><td><code>grafismos/horizonte-{lavanda|azul|sombra}.svg</code></td><td>Faixa de barras para rodapés e bases</td></tr>
+        <tr><td><code>grafismos/pauta-{clara|azul}.svg</code></td><td>Textura de livro-razão</td></tr>
+        <tr><td><code>grafismos/recorte-{topo|escada|vertical}-{cor|tons|branco}.svg</code></td><td>Recortes ampliados do símbolo</td></tr>
+        <tr><td><code>grafismos/mosaico-{claro|azul|mono}.svg</code></td><td>Mosaico modular</td></tr>
+        <tr><td><code>grafismos/linha-resultado-{azul|branco}.svg</code></td><td>Linha de resultado</td></tr>
       </tbody>
     </table>
     <div style="font-size:15px">
       <p><strong>Pasta <code style="font-family:var(--mono)">logos/svg</code></strong> — arquivos vetoriais, com o texto convertido em curvas. Use para gráfica, sinalização, brindes, recorte e bordado. Abrem no Illustrator, Inkscape, CorelDRAW, Figma e Canva.</p>
+      <p><strong>Pasta <code style="font-family:var(--mono)">grafismos</code></strong> — elementos gráficos em SVG e PNG, nas mesmas cores da marca.</p>
       <p><strong>Pasta <code style="font-family:var(--mono)">logos/png</code></strong> — as mesmas versões em PNG com fundo transparente (2400 px de largura; símbolos com 1024 px). Use em Word, PowerPoint, redes sociais e e-mail.</p>
       <p>Precisa de PDF, EPS ou outro formato? Abra o SVG no Illustrator ou Inkscape e salve no formato pedido pela gráfica; nada se perde, pois o arquivo já é vetorial.</p>
       <p style="margin-top:20px; color:var(--cinza)">Dúvidas sobre o uso da marca: contato@ec-consultoria.com</p>
     </div>
   </div>
-  <footer class="pg-foot"><span>EC Consultoria · Manual da Marca</span><span>11</span></footer>
+  <footer class="pg-foot"><span><img src="grafismos/svg/degraus-cor.svg" alt="">EC Consultoria · Manual da Marca</span><span class="pgn"></span></footer>
 </section>
 
 </body>

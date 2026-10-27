@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1065 180" width="1065" height="180">
+<title>Horizonte (fundos claros)</title>
+<clipPath id="c"><rect width="1065" height="180"/></clipPath>
+<g clip-path="url(#c)">
+<rect x="0" y="156" width="30" height="28" rx="4" fill="#E8E8FF"/>
+<rect x="45" y="118.07" width="30" height="65.93" rx="4" fill="#E8E8FF"/>
+<rect x="90" y="136.02" width="30" height="47.98" rx="4" fill="#E8E8FF"/>
+<rect x="135" y="134.07" width="30" height="49.93" rx="4" fill="#E8E8FF"/>
+<rect x="180" y="110.61" width="30" height="73.39" rx="4" fill="#E8E8FF"/>
+<rect x="225" y="112.91" width="30" height="71.09" rx="4" fill="#E8E8FF"/>
+<rect x="270" y="115.45" width="30" height="68.55" rx="4" fill="#E8E8FF"/>
+<rect x="315" y="95.45" width="30" height="88.55" rx="4" fill="#E8E8FF"/>
+<rect x="360" y="90.56" width="30" height="93.44" rx="4" fill="#E8E8FF"/>
+<rect x="405" y="93.41" width="30" height="90.59" rx="4" fill="#E8E8FF"/>
+<rect x="450" y="83.53" width="30" height="100.47" rx="4" fill="#E8E8FF"/>
+<rect x="495" y="80.5" width="30" height="103.5" rx="4" fill="#E8E8FF"/>
+<rect x="540" y="69.21" width="30" height="114.79" rx="4" fill="#E8E8FF"/>
+<rect x="585" y="85.11" width="30" height="98.89" rx="4" fill="#E8E8FF"/>
+<rect x="630" y="75.57" width="30" height="108.43" rx="4" fill="#E8E8FF"/>
+<rect x="675" y="58.78" width="30" height="125.22" rx="4" fill="#E8E8FF"/>
+<rect x="720" y="54.35" width="30" height="129.65" rx="4" fill="#E8E8FF"/>
+<rect x="765" y="72.76" width="30" height="111.24" rx="4" fill="#E8E8FF"/>
+<rect x="810" y="45.29" width="30" height="138.71" rx="4" fill="#E8E8FF"/>
+<rect x="855" y="48.29" width="30" height="135.71" rx="4" fill="#E8E8FF"/>
+<rect x="900" y="27.14" width="30" height="156.86" rx="4" fill="#E8E8FF"/>
+<rect x="945" y="26.5" width="30" height="157.5" rx="4" fill="#E8E8FF"/>
+<rect x="990" y="46.36" width="30" height="137.64" rx="4" fill="#E8E8FF"/>
+<rect x="1035" y="27.53" width="30" height="156.47" rx="4" fill="#E8E8FF"/>
+</g>
+</svg>
