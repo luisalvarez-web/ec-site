@@ -9,7 +9,11 @@ const brazil: MapData = (brazilModule as any).default ?? brazilModule;
 // Posições no sistema de coordenadas do mapa (viewBox 0 0 613 639),
 // calculadas a partir da caixa de cada estado e da lat/long das cidades.
 const hub = { x: 525.6, y: 403.4 }; // Grande Vitória (Vitória, Serra, Vila Velha)
-const niteroi = { x: 482.8, y: 446.6 };
+// Clientes remotos. Rio e Niterói ficam a ~1px de distância nesta escala, por isso um só pin.
+const clients = [
+  { x: 482.3, y: 446.8, label: ['Rio', 'Niterói'], lx: 12, ly: 26 },
+  { x: 387.2, y: 489.7, label: ['Curitiba'], lx: -14, ly: 28, anchor: 'end' },
+];
 
 // Destinos ilustrativos do atendimento online, espalhados pelas regiões do país.
 const remote = [
@@ -21,7 +25,6 @@ const remote = [
   { x: 335, y: 139 }, // PA
   { x: 140, y: 142 }, // AM
   { x: 282, y: 281 }, // MT
-  { x: 354, y: 476 }, // PR
   { x: 318, y: 578 }, // RS
 ];
 
@@ -35,7 +38,7 @@ function arc(a: { x: number; y: number }, b: { x: number; y: number }, bend = 0.
   return `M${a.x} ${a.y} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${b.x} ${b.y}`;
 }
 
-const highlighted = new Set(['es', 'rj']);
+const highlighted = new Set(['es', 'rj', 'pr']);
 const cityNames = serviceArea.cities.map((c) => (c.state === 'ES' ? c.name : `${c.name}/${c.state}`));
 ---
 <div class="area">
@@ -80,7 +83,7 @@ const cityNames = serviceArea.cities.map((c) => (c.state === 'ES' ? c.name : `${
   <figure class="area-map">
     <svg viewBox={brazil.viewBox} role="img" aria-labelledby="mapa-titulo">
       <title id="mapa-titulo">
-        Mapa do Brasil: atendimento presencial na Grande Vitória (ES), cliente em Niterói (RJ) e atendimento online em todas as regiões.
+        Mapa do Brasil: atendimento presencial na Grande Vitória (ES), clientes no Rio de Janeiro, em Niterói (RJ) e em Curitiba (PR) e atendimento online em todas as regiões.
       </title>
       <g class="states">
         {brazil.locations.map((s) => (
@@ -93,12 +96,16 @@ const cityNames = serviceArea.cities.map((c) => (c.state === 'ES' ? c.name : `${
       <g class="targets">
         {remote.map((r, i) => <circle cx={r.x} cy={r.y} r="4.5" style={`--i:${i}`} />)}
       </g>
-      <path class="route-client" d={arc(hub, niteroi, 0.35)} />
-      <g class="pin pin-client" transform={`translate(${niteroi.x} ${niteroi.y})`}>
-        <circle class="ring" r="9" />
-        <circle class="dot" r="7" />
-        <text x="12" y="28">Niterói</text>
-      </g>
+      {clients.map((c) => <path class="route-client" d={arc(hub, c, 0.35)} />)}
+      {clients.map((c) => (
+        <g class="pin pin-client" transform={`translate(${c.x} ${c.y})`}>
+          <circle class="ring" r="9" />
+          <circle class="dot" r="7" />
+          <text x={c.lx} y={c.ly} text-anchor={c.anchor ?? 'start'}>
+            {c.label.map((l, i) => <tspan x={c.lx} dy={i === 0 ? 0 : 21}>{l}</tspan>)}
+          </text>
+        </g>
+      ))}
       <g class="pin pin-hub" transform={`translate(${hub.x} ${hub.y})`}>
         <circle class="ring" r="12" />
         <circle class="ring ring-2" r="12" />

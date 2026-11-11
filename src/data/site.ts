@@ -31,7 +31,9 @@ export const serviceArea = {
     { name: 'Vitória', state: 'ES', stateName: 'Espírito Santo', mode: 'presencial' },
     { name: 'Serra', state: 'ES', stateName: 'Espírito Santo', mode: 'presencial' },
     { name: 'Vila Velha', state: 'ES', stateName: 'Espírito Santo', mode: 'presencial' },
+    { name: 'Rio de Janeiro', state: 'RJ', stateName: 'Rio de Janeiro', mode: 'remoto' },
     { name: 'Niterói', state: 'RJ', stateName: 'Rio de Janeiro', mode: 'remoto' },
+    { name: 'Curitiba', state: 'PR', stateName: 'Paraná', mode: 'remoto' },
   ],
 };
 
@@ -180,7 +182,7 @@ export const services: Service[] = [
 export const faq: { q: string; a: string }[] = [
   {
     q: 'Vocês atendem apenas empresas de Vitória?',
-    a: 'Não. O atendimento é presencial na Grande Vitória e remoto para todo o Brasil, com documentos e guias trocados pelo Portal EC e pelo Onvio. Hoje temos clientes em Vitória, Serra, Vila Velha e Niterói (RJ).',
+    a: 'Não. O atendimento é presencial na Grande Vitória e remoto para todo o Brasil, com documentos e guias trocados pelo Portal EC e pelo Onvio. Hoje temos clientes em Vitória, Serra, Vila Velha, Rio de Janeiro, Niterói e Curitiba.',
   },
   {
     q: 'Vocês atendem ONGs e entidades sem fins lucrativos?',
