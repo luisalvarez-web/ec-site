@@ -41,6 +41,71 @@ export type Guia = {
 
 export const guias: Guia[] = [
   {
+    slug: 'assinatura-protocolo-simplifica-es',
+    tag: 'Jucees · ES',
+    title: 'Como assinar um protocolo no Simplifica ES',
+    seoTitle: 'Como assinar protocolo no Simplifica ES (Jucees) pelo gov.br | EC Consultoria',
+    description:
+      'Passo a passo para o sócio ou administrador assinar pelo gov.br, no Simplifica ES, o processo de abertura, alteração ou baixa na Junta Comercial do ES.',
+    lede:
+      'Quando montamos a abertura, alteração ou baixa da sua empresa na Junta Comercial do Espírito Santo, cada sócio ou administrador assina o documento direto no Simplifica ES. Leva poucos minutos.',
+    tempo: 'cerca de 5 minutos',
+    revisado: '2026-11-18',
+    before: [
+      'Conta <strong>gov.br</strong> nível prata ou ouro. <a href="https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br/niveis-da-conta-govbr" target="_blank" rel="noopener">Veja como subir o nível</a>',
+      'O app <strong>gov.br</strong> instalado e logado no celular, para receber o código de confirmação',
+      'O <strong>número do protocolo</strong> que a EC enviou para você',
+      'Navegador comum, fora da janela anônima',
+    ],
+    steps: [
+      {
+        title: 'Abra o Acompanhamento do Protocolo',
+        text: 'Acesse <a href="https://www.simplifica.es.gov.br/" target="_blank" rel="noopener">www.simplifica.es.gov.br</a> e clique em <strong>Acompanhamento do Protocolo</strong>.',
+        alt: 'Página inicial do Simplifica ES com a opção Acompanhamento do Protocolo',
+      },
+      {
+        title: 'Informe o número do protocolo',
+        text: 'Digite o número do protocolo que enviamos e clique em <strong>Acompanhar</strong>.',
+        alt: 'Campo do número do protocolo e o botão Acompanhar',
+      },
+      {
+        title: 'Entre com o gov.br',
+        text: 'Quando o sistema pedir, faça login com o <strong>mesmo CPF e senha</strong> do app gov.br do seu celular.',
+        alt: 'Tela de login gov.br',
+      },
+      {
+        title: 'Abra o documento',
+        text: 'Clique em <strong>Exibir conteúdo</strong> e abra o contrato (ou alteração, ou distrato) para ler. Confira seus dados antes de assinar.',
+        alt: 'Protocolo aberto com o botão Exibir conteúdo',
+      },
+      {
+        title: 'Avance até a assinatura',
+        text: 'Clique em <strong>Avançar</strong> até aparecer a tela de assinatura e clique em <strong>Assinar</strong>.',
+        alt: 'Tela de assinatura eletrônica do Simplifica ES com o botão Assinar',
+      },
+      {
+        title: 'Escolha assinar com gov.br',
+        text: 'Entre as opções de assinatura, escolha <strong>gov.br</strong>. Quem tem certificado digital (e-CPF ou em nuvem) também pode usar, se preferir.',
+        alt: 'Opções de assinatura: gov.br, certificado digital e certificado em nuvem',
+      },
+      {
+        title: 'Autorize com o código',
+        text: 'O gov.br manda um <strong>código</strong> para o seu celular (pelo app ou por SMS). Digite o código e clique em <strong>Autorizar</strong>.',
+        alt: 'Tela do gov.br pedindo o código de autorização',
+        note: 'O código não chegou? Deixe o app gov.br aberto no celular e clique em assinar de novo. Às vezes o sistema também pede para fazer login outra vez; é normal.',
+      },
+      {
+        title: 'Avise a EC',
+        text: 'Pronto. Mande uma mensagem para a gente dizendo que assinou. Quando todos os sócios assinarem, protocolamos o processo na Jucees.',
+      },
+    ],
+    extra: {
+      title: 'Assine dentro do Simplifica ES',
+      text: 'A Jucees só aceita a assinatura feita <strong>dentro do próprio Simplifica ES</strong>. Um PDF assinado em outro lugar (por exemplo, no assinador avulso do gov.br) não vale para o processo. Se não puder assinar pessoalmente, é possível nomear um procurador, mas isso precisa ser combinado com a gente antes de montarmos o processo.',
+    },
+    fonte: { label: 'Jucees · Assinatura digital de processos', href: 'https://jucees.es.gov.br/' },
+  },
+  {
     slug: 'assinatura-protocolo-jucerja',
     tag: 'Jucerja · RJ',
     title: 'Como assinar um protocolo na Jucerja',
