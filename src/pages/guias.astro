@@ -2,6 +2,11 @@
 import Base from '../layouts/Base.astro';
 import ContactCard from '../components/ContactCard.astro';
 import { guias } from '../data/guias';
+import { site } from '../data/site';
+
+// Texto pesquisável de cada guia: título, tag, descrição, palavras-chave e títulos dos passos.
+const indice = (g: (typeof guias)[number]) =>
+  [g.title, g.tag, g.description, ...(g.keywords ?? []), ...g.steps.map((s) => s.title)].join(' ');
 ---
 <Base
   title="Guias passo a passo para clientes | EC Consultoria"
@@ -17,9 +22,18 @@ import { guias } from '../data/guias';
 
   <section class="block">
     <div class="wrap">
+      <div class="guia-search" role="search">
+        <label for="busca-guias" class="eyebrow">Buscar guia</label>
+        <div class="guia-search-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg>
+          <input id="busca-guias" type="search" placeholder="Ex.: procuração, Jucerja, assinar contrato" autocomplete="off" />
+        </div>
+        <p class="guia-search-count" aria-live="polite" data-count></p>
+      </div>
+
       <div class="services guia-list">
         {guias.map((g) => (
-          <a class="svc" href={`/guias/${g.slug}`}>
+          <a class="svc" href={`/guias/${g.slug}`} data-busca={indice(g)}>
             <span class="code">{g.tag.toUpperCase()} · {g.steps.length} PASSOS</span>
             <h2 class="guia-card-title">{g.title}</h2>
             <p>{g.description}</p>
@@ -27,6 +41,10 @@ import { guias } from '../data/guias';
           </a>
         ))}
       </div>
+
+      <p class="guia-empty" data-empty hidden>
+        Nenhum guia com esse termo. <a href={site.whatsapp.href} target="_blank" rel="noopener">Fale com a gente no WhatsApp</a> que ajudamos com o que você precisa.
+      </p>
     </div>
   </section>
 
@@ -35,4 +53,39 @@ import { guias } from '../data/guias';
       <ContactCard heading="Precisa de outro passo a passo?" />
     </div>
   </section>
+
+  <script>
+    // Ignora acentos e maiúsculas: "procuracao" encontra "Procuração".
+    const normalizar = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+    const input = document.querySelector<HTMLInputElement>('#busca-guias')!;
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-busca]')].map((el) => ({
+      el,
+      texto: normalizar(el.dataset.busca ?? ''),
+    }));
+    const vazio = document.querySelector<HTMLElement>('[data-empty]')!;
+    const lista = document.querySelector<HTMLElement>('.guia-list')!;
+    const contagem = document.querySelector<HTMLElement>('[data-count]')!;
+
+    const filtrar = () => {
+      const termos = normalizar(input.value).split(/\s+/).filter(Boolean);
+      let visiveis = 0;
+      for (const { el, texto } of cards) {
+        const ok = termos.every((t) => texto.includes(t));
+        el.hidden = !ok;
+        if (ok) visiveis++;
+      }
+      vazio.hidden = visiveis > 0;
+      lista.hidden = visiveis === 0;
+      contagem.textContent = termos.length
+        ? `${visiveis} ${visiveis === 1 ? 'guia encontrado' : 'guias encontrados'}`
+        : '';
+    };
+
+    input.addEventListener('input', filtrar);
+    // Permite link direto com busca: /guias?q=procuracao
+    const q = new URLSearchParams(location.search).get('q');
+    if (q) input.value = q;
+    filtrar();
+  </script>
 </Base>

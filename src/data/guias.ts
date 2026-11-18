@@ -30,6 +30,8 @@ export type Guia = {
   lede: string;
   /** Tempo aproximado para concluir. */
   tempo: string;
+  /** Termos extras para a busca da página /guias (sinônimos, siglas). */
+  keywords?: string[];
   /** Data da última revisão do conteúdo (AAAA-MM-DD). */
   revisado: string;
   before: string[];
@@ -50,7 +52,8 @@ export const guias: Guia[] = [
     lede:
       'Quando montamos a abertura, alteração ou baixa da sua empresa na Junta Comercial do Espírito Santo, cada sócio ou administrador assina o documento direto no Simplifica ES. Leva poucos minutos.',
     tempo: 'cerca de 5 minutos',
-    revisado: '2026-11-18',
+    revisado: '2026-10-27',
+    keywords: ['Junta Comercial', 'Espírito Santo', 'Vitória', 'contrato social', 'alteração contratual', 'abertura de empresa', 'distrato', 'assinatura digital'],
     before: [
       'Conta <strong>gov.br</strong> nível prata ou ouro. <a href="https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br/niveis-da-conta-govbr" target="_blank" rel="noopener">Veja como subir o nível</a>',
       'O app <strong>gov.br</strong> instalado e logado no celular, para receber o código de confirmação',
@@ -115,7 +118,8 @@ export const guias: Guia[] = [
     lede:
       'Quando registramos a abertura, alteração ou baixa da sua empresa na Junta Comercial do Rio de Janeiro, cada sócio ou administrador precisa assinar o protocolo. Leva poucos minutos.',
     tempo: 'cerca de 5 minutos',
-    revisado: '2026-11-18',
+    revisado: '2026-09-15',
+    keywords: ['Junta Comercial', 'Rio de Janeiro', 'Protocolo Web', 'contrato social', 'alteração contratual', 'abertura de empresa', 'assinatura digital'],
     before: [
       'Conta <strong>gov.br</strong> nível prata ou ouro (ou certificado digital e-CPF)',
       'O <strong>número do protocolo</strong> que a EC enviou para você',
@@ -179,7 +183,8 @@ export const guias: Guia[] = [
     lede:
       'Para cuidarmos da sua situação na Receita Federal (pendências, parcelamentos, declarações, certidões), você precisa nos dar acesso. Desde dezembro de 2025, a antiga procuração eletrônica do eCAC se chama Autorização de Acesso.',
     tempo: 'cerca de 5 minutos',
-    revisado: '2026-11-18',
+    revisado: '2026-10-06',
+    keywords: ['e-CAC', 'ecac', 'procuração digital', 'procuração eletrônica', 'autorização de acesso', 'contador', 'Receita Federal', 'CPF', 'CNPJ'],
     before: [
       'Conta <strong>gov.br</strong> nível prata ou ouro. <a href="https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br/niveis-da-conta-govbr" target="_blank" rel="noopener">Veja como subir o nível</a>',
       'Se for para uma <strong>empresa</strong>: o gov.br do responsável legal pelo CNPJ ou o certificado digital da empresa (e-CNPJ)',
