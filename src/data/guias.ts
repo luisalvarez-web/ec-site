@@ -429,8 +429,8 @@ export const guias: Guia[] = [
       },
       {
         title: 'Libere as filiais (se houver)',
-        text: 'Se a empresa tem filiais, volte em <strong>Administração</strong>, abra <strong>Delegar Filial à Procurador</strong>, marque as filiais e clique em <strong>Delegar Selecionadas</strong>.',
-        alt: 'Tela Delegar Filial à Procurador',
+        text: 'Se a empresa tem filiais, volte em <strong>Administração</strong>, abra a opção de <strong>delegar filiais ao procurador</strong>, marque as filiais e clique em <strong>Delegar Selecionadas</strong>.',
+        alt: 'Tela para delegar filiais ao procurador',
         note: 'Sem esse passo, só conseguimos fazer requerimentos dos funcionários da matriz.',
       },
       {
