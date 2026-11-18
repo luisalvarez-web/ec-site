@@ -317,6 +317,137 @@ export const guias: Guia[] = [
     },
   },
   {
+    slug: 'procuracao-fgts-digital',
+    tag: 'FGTS Digital',
+    title: 'Como dar procuração à EC no FGTS Digital',
+    seoTitle: 'Procuração FGTS Digital: como autorizar seu contador no SPE | EC Consultoria',
+    description:
+      'Passo a passo para a empresa dar procuração à EC Consultoria no FGTS Digital, pelo Sistema de Procuração Eletrônica (SPE) do governo, com gov.br.',
+    lede:
+      'Para emitirmos as guias do FGTS, consultarmos débitos e cuidarmos de parcelamentos, sua empresa precisa nos dar procuração no FGTS Digital. Atenção: a procuração da Receita (eCAC) não vale para o FGTS.',
+    tempo: 'cerca de 5 minutos',
+    revisado: '2026-11-10',
+    keywords: ['FGTS', 'FGTS Digital', 'SPE', 'procuração eletrônica', 'GFD', 'guia do FGTS', 'Ministério do Trabalho', 'MTE', 'DET', 'departamento pessoal', 'folha de pagamento'],
+    before: [
+      'Para empresa: o <strong>gov.br prata ou ouro do representante legal</strong> que consta no CNPJ (ou o certificado e-CNPJ da matriz)',
+      'Para empregador pessoa física: gov.br prata ou ouro ou e-CPF',
+      'O app <strong>gov.br</strong> no celular, para o código de assinatura',
+      `O CNPJ da EC Consultoria: <strong>${site.cnpj}</strong>`,
+    ],
+    steps: [
+      {
+        title: 'Entre no SPE',
+        text: 'Acesse o <a href="https://spe.sistema.gov.br/" target="_blank" rel="noopener">Sistema de Procuração Eletrônica (SPE)</a> e clique em <strong>Entrar com GOV.BR</strong>. Também dá para chegar pelo cartão <strong>Procurações</strong> dentro do FGTS Digital.',
+        alt: 'Tela inicial do SPE com o botão Entrar com GOV.BR',
+      },
+      {
+        title: 'Troque para o CNPJ da empresa',
+        text: 'Se você entrou com o seu CPF de representante legal, clique em <strong>Trocar Perfil</strong>, informe o CNPJ da empresa e clique em <strong>Selecionar</strong>.',
+        alt: 'Opção Trocar Perfil com o campo de CNPJ',
+        note: 'Use o CNPJ da <strong>matriz</strong>: só ela pode dar procuração no SPE.',
+      },
+      {
+        title: 'Comece uma nova procuração',
+        text: 'Clique em <strong>Nova Procuração</strong>. Na etapa <em>Outorgante</em>, os dados da empresa já vêm preenchidos: informe e confirme o seu e-mail e clique em <strong>Avançar</strong>.',
+        alt: 'Botão Nova Procuração e etapa Outorgante',
+      },
+      {
+        title: 'Informe a EC como outorgada',
+        text: `Na etapa <em>Outorgado</em>, escolha pessoa jurídica e informe o CNPJ da EC e o e-mail <strong>${site.email}</strong>. Clique em <strong>Avançar</strong>.`,
+        alt: 'Etapa Outorgado com os campos de CNPJ e e-mail',
+        copy: { label: 'CNPJ da EC Consultoria', value: site.cnpj },
+      },
+      {
+        title: 'Marque todos os serviços',
+        text: 'Na etapa de serviços, clique em <strong>Marcar Todos</strong>. Esse botão inclui os serviços de <em>poder especial</em> (parcelamento, histórico de remunerações e bloqueio/estorno), que a primeira opção da lista não marca.',
+        alt: 'Lista de serviços do FGTS Digital com o botão Marcar Todos',
+        note: 'Sem o serviço <strong>Dados do Empregador · Edição</strong>, só conseguimos entrar depois que você fizer o primeiro acesso ao FGTS Digital. Por isso recomendamos marcar todos.',
+      },
+      {
+        title: 'Defina a vigência',
+        text: 'O máximo é <strong>5 anos</strong>. Se deixar em branco, o sistema já usa esse prazo, que é o que recomendamos.',
+        alt: 'Etapa Vigência da procuração',
+      },
+      {
+        title: 'Assine a procuração',
+        text: 'Na última etapa, clique em <strong>Assinar</strong>. Quem entrou com gov.br confirma com o código que chega pelo app ou SMS. Ao final, a procuração aparece como <strong>Ativa</strong> e você pode baixar o PDF.',
+        alt: 'Etapa Gerar Procuração com o botão Assinar',
+        note: 'Não clique só em <em>Salvar Rascunho</em>: assim a procuração fica pendente e não vale.',
+      },
+      {
+        title: 'Avise a EC',
+        text: 'Pronto. Mande uma mensagem para a gente: já conseguimos acessar o FGTS Digital da sua empresa.',
+      },
+    ],
+    extra: {
+      title: 'Empregador doméstico',
+      text: 'Quem tem empregada doméstica continua pagando o FGTS pelo DAE do <strong>eSocial Doméstico</strong>, e não pelo FGTS Digital. Nesse caso, fale com a gente: o acesso é por outro caminho.',
+    },
+    fonte: {
+      label: 'MTE · Manuais do FGTS Digital e do SPE',
+      href: 'https://www.gov.br/trabalho-e-emprego/pt-br/servicos/empregador/fgtsdigital/manual-e-documentacao-tecnica',
+    },
+  },
+  {
+    slug: 'procuracao-empregador-web',
+    tag: 'Empregador Web',
+    title: 'Como dar procuração à EC no Empregador Web',
+    seoTitle: 'Procuração no Empregador Web (seguro-desemprego): como autorizar seu contador | EC',
+    description:
+      'Passo a passo para a empresa dar procuração à EC Consultoria no Empregador Web do Ministério do Trabalho, usado para o requerimento do seguro-desemprego.',
+    lede:
+      'Quando um funcionário é demitido sem justa causa, o requerimento do seguro-desemprego é feito no Empregador Web, do Ministério do Trabalho. Para fazermos isso por você, a empresa precisa nos dar procuração nesse sistema.',
+    tempo: 'cerca de 5 minutos',
+    revisado: '2026-11-12',
+    keywords: ['seguro-desemprego', 'seguro desemprego', 'Empregador Web', 'MTE', 'Ministério do Trabalho', 'rescisão', 'demissão', 'departamento pessoal', 'certificado digital', 'e-CNPJ'],
+    before: [
+      'O <strong>certificado digital e-CNPJ</strong> da empresa (o Empregador Web funciona com certificado)',
+      'A empresa <strong>cadastrada</strong> no Empregador Web, com o responsável legal como <strong>Gestor</strong>',
+      `O CNPJ da EC Consultoria: <strong>${site.cnpj}</strong>`,
+    ],
+    steps: [
+      {
+        title: 'Entre no Empregador Web',
+        text: 'Acesse o <a href="https://sd.maisemprego.mte.gov.br/sdweb/empregadorweb/index.jsf" target="_blank" rel="noopener">Empregador Web</a> e faça login <strong>com certificado digital</strong>, usando o e-CNPJ da empresa.',
+        alt: 'Tela de login do Empregador Web com a opção de certificado digital',
+      },
+      {
+        title: 'Abra o cadastro de procuração',
+        text: 'No menu <strong>Administração</strong>, vá em <strong>Manter Procuração</strong> e depois em <strong>Cadastrar Procuração</strong>.',
+        alt: 'Menu Administração com a opção Manter Procuração',
+      },
+      {
+        title: 'Escolha Pessoa Jurídica',
+        text: 'Selecione <strong>Cadastrar Procuração · Pessoa Jurídica</strong> e informe o CNPJ da EC.',
+        alt: 'Formulário de procuração para pessoa jurídica',
+        copy: { label: 'CNPJ da EC Consultoria', value: site.cnpj },
+      },
+      {
+        title: 'Confirme o cadastro',
+        text: 'Confira os dados, clique em <strong>Cadastrar</strong> e confirme na tela seguinte. Feita com certificado digital, a procuração já fica <strong>ativa</strong>.',
+        alt: 'Tela de confirmação da procuração',
+      },
+      {
+        title: 'Libere as filiais (se houver)',
+        text: 'Se a empresa tem filiais, volte em <strong>Administração</strong>, abra <strong>Delegar Filial à Procurador</strong>, marque as filiais e clique em <strong>Delegar Selecionadas</strong>.',
+        alt: 'Tela Delegar Filial à Procurador',
+        note: 'Sem esse passo, só conseguimos fazer requerimentos dos funcionários da matriz.',
+      },
+      {
+        title: 'Avise a EC',
+        text: 'Pronto. Mande uma mensagem para a gente: já conseguimos fazer os requerimentos de seguro-desemprego da sua empresa.',
+      },
+    ],
+    extra: {
+      title: 'Não tem certificado digital?',
+      text: 'O Empregador Web permite cadastrar a procuração sem certificado, mas aí ela precisa ser <strong>ativada</strong> à parte (pelo Portal Cidadão da Dataprev ou num posto do Ministério do Trabalho), o que pode levar alguns dias. Fale com a gente antes, que orientamos o melhor caminho. A empresa pode ter no máximo <strong>duas procurações ativas</strong> ao mesmo tempo, e a procuração vale até ser revogada.',
+    },
+    fonte: {
+      label: 'MTE · Manual do Usuário do Empregador Web',
+      href: 'https://portalfat.trabalho.gov.br/wp-content/uploads/2016/03/Manual_usuario_empregador_web_versao_2014.pdf',
+    },
+  },
+  {
     slug: 'procuracao-ecac',
     tag: 'Receita Federal',
     title: 'Como autorizar a EC na Receita Federal (procuração eCAC)',
