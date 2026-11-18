@@ -21,6 +21,8 @@ export type Passo = {
 
 export type Guia = {
   slug: string;
+  /** Estado do mapa com bandeira (sigla minúscula). Sem sigla: Brasil (órgãos federais). */
+  uf?: string;
   /** Rótulo curto (cartões e eyebrow). */
   tag: string;
   title: string;
@@ -41,9 +43,15 @@ export type Guia = {
   fonte: { label: string; href: string };
 };
 
+const GOVBR_NIVEL =
+  '<a href="https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br/niveis-da-conta-govbr" target="_blank" rel="noopener">Veja como subir o nível</a>';
+const GOVBR_2FA =
+  'Para ativar, abra o app gov.br, vá em <strong>Segurança da conta</strong> e ligue a <strong>Verificação em duas etapas</strong>. Na hora de assinar, o código sai do próprio app.';
+
 export const guias: Guia[] = [
   {
     slug: 'assinatura-protocolo-simplifica-es',
+    uf: 'es',
     tag: 'Jucees · ES',
     title: 'Como assinar um protocolo no Simplifica ES',
     seoTitle: 'Como assinar protocolo no Simplifica ES (Jucees) pelo gov.br | EC Consultoria',
@@ -110,6 +118,7 @@ export const guias: Guia[] = [
   },
   {
     slug: 'assinatura-protocolo-jucerja',
+    uf: 'rj',
     tag: 'Jucerja · RJ',
     title: 'Como assinar um protocolo na Jucerja',
     seoTitle: 'Como assinar protocolo na Jucerja pelo gov.br | Passo a passo EC Consultoria',
@@ -172,6 +181,140 @@ export const guias: Guia[] = [
       text: 'A Jucerja exige que o protocolo aberto seja movimentado em até <strong>30 dias corridos</strong>. Depois disso, ele pode ser cancelado e o processo precisa recomeçar. Por isso, assine assim que receber o aviso.',
     },
     fonte: { label: 'Jucerja · Protocolo Web', href: 'https://www.jucerja.rj.gov.br/' },
+  },
+  {
+    slug: 'assinatura-processo-jucesc',
+    uf: 'sc',
+    tag: 'Jucesc · SC',
+    title: 'Como assinar um processo na Jucesc',
+    seoTitle: 'Como assinar processo na Jucesc (SC) pelo gov.br | Passo a passo EC Consultoria',
+    description:
+      'Passo a passo para o sócio ou administrador assinar pelo gov.br, no Assinador web da Jucesc, o processo de abertura, alteração ou baixa da empresa em SC.',
+    lede:
+      'Quando montamos a abertura, alteração ou baixa da sua empresa na Junta Comercial de Santa Catarina, cada sócio ou administrador assina o processo no Assinador web da Jucesc.',
+    tempo: 'cerca de 5 minutos',
+    revisado: '2026-11-03',
+    keywords: ['Junta Comercial', 'Santa Catarina', 'Florianópolis', 'REGIN', 'Requerimento Universal', 'Assinador web', 'contrato social', 'alteração contratual', 'abertura de empresa', 'assinatura digital'],
+    before: [
+      `Conta <strong>gov.br</strong> nível prata ou ouro, com a <strong>verificação em duas etapas</strong> ativada. ${GOVBR_NIVEL}`,
+      'O app <strong>gov.br</strong> instalado e logado no celular',
+      'O <strong>número do protocolo ou do requerimento</strong> que a EC enviou para você',
+      'Computador com navegador atualizado',
+    ],
+    steps: [
+      {
+        title: 'Entre no Requerimento Universal',
+        text: 'Acesse o <a href="http://regin.jucesc.sc.gov.br/RequerimentoUniversal/NovoLogin.aspx" target="_blank" rel="noopener">Requerimento Universal da Jucesc</a> e entre com a sua conta <strong>gov.br</strong>.',
+        alt: 'Tela de login do Requerimento Universal da Jucesc',
+      },
+      {
+        title: 'Abra o Assinador web',
+        text: 'Já logado, selecione a opção <strong>Assinador web</strong>.',
+        alt: 'Opção Assinador web no portal da Jucesc',
+      },
+      {
+        title: 'Encontre o processo',
+        text: 'Em <strong>Instituição</strong>, escolha <em>Junta Comercial do Estado de Santa Catarina</em>. Em <strong>Nr. Protocolo / Nr. Requerimento</strong>, digite o número que enviamos.',
+        alt: 'Campos Instituição e Nr. Protocolo / Nr. Requerimento no Assinador web',
+      },
+      {
+        title: 'Clique no lápis ao lado do seu nome',
+        text: 'Aparece a lista de assinantes do documento. Clique no <strong>lápis</strong> na linha com o seu nome.',
+        alt: 'Lista de assinantes com o ícone de lápis',
+        note: 'Seu nome não aparece na lista? Avise a gente: precisamos incluir você como assinante no requerimento.',
+      },
+      {
+        title: 'Escolha o gov.br e assine',
+        text: 'Clique no <strong>ícone do gov.br</strong> e depois em <strong>Assinar</strong>. Se o sistema pedir, entre de novo com seu CPF e senha do gov.br.',
+        alt: 'Opção de assinatura com gov.br no Assinador web',
+      },
+      {
+        title: 'Autorize com o código do app',
+        text: 'No app gov.br do celular, gere o <strong>código de acesso</strong>. Digite o código no campo do assinador e clique em <strong>Autorizar</strong>.',
+        alt: 'Campo para o código do gov.br e botão Autorizar',
+      },
+      {
+        title: 'Confira e avise a EC',
+        text: 'O lápis ao lado do seu nome fica <strong>verde</strong> quando a assinatura está feita. Mande uma mensagem para a gente: quando todos assinarem, enviamos o processo para a Jucesc.',
+      },
+    ],
+    extra: {
+      title: 'Ative a verificação em duas etapas antes',
+      text: `Desde 2025, a assinatura gov.br nas Juntas Comerciais exige a verificação em duas etapas. ${GOVBR_2FA} No <strong>registro automático</strong>, a Jucesc só aceita a assinatura do próprio sócio ou titular, sem procurador.`,
+    },
+    fonte: {
+      label: 'Jucesc · Assinatura gov.br pelo Portal Assinador',
+      href: 'https://atendimento.jucesc.sc.gov.br/help/pt-br/72-consulta-de-viabilidade-dbe-requerimento-eletronico-e-demais-procedimentos-de-sistema/408-assinatura-gov-br-pelo-portal-assinador-da-jucesc',
+    },
+  },
+  {
+    slug: 'assinatura-processo-jucemg',
+    uf: 'mg',
+    tag: 'Jucemg · MG',
+    title: 'Como assinar um processo na Jucemg',
+    seoTitle: 'Como assinar processo na Jucemg (MG) pelo gov.br | Passo a passo EC Consultoria',
+    description:
+      'Passo a passo para o sócio ou administrador assinar com gov.br, no Registro Digital da Jucemg, o processo de abertura, alteração ou baixa de empresa em MG.',
+    lede:
+      'Quando montamos a abertura, alteração ou baixa da sua empresa na Junta Comercial de Minas Gerais, cada sócio ou administrador assina os documentos no Registro Digital da Jucemg.',
+    tempo: 'cerca de 5 minutos',
+    revisado: '2026-11-05',
+    keywords: ['Junta Comercial', 'Minas Gerais', 'Belo Horizonte', 'Registro Digital', 'Portal de Serviços', 'contrato social', 'alteração contratual', 'abertura de empresa', 'assinatura digital'],
+    before: [
+      `Conta <strong>gov.br</strong> nível prata ou ouro, com a <strong>verificação em duas etapas</strong> ativada. ${GOVBR_NIVEL}`,
+      'O app <strong>gov.br</strong> instalado e logado no celular',
+      'O <strong>número do protocolo do Registro Digital</strong> (a Jucemg manda por e-mail e a EC também envia para você)',
+      'Computador com Chrome ou Firefox',
+    ],
+    steps: [
+      {
+        title: 'Abra o assinador da Jucemg',
+        text: 'Acesse <a href="https://www.jucemg.mg.gov.br/" target="_blank" rel="noopener">www.jucemg.mg.gov.br</a> e clique em <strong>Assinar documentos</strong>. Se preferir, vá direto ao <a href="https://portalservicos.jucemg.mg.gov.br/registroDigital/pages/assinador/assinador.jsf" target="_blank" rel="noopener">assinador do Registro Digital</a>.',
+        alt: 'Site da Jucemg com o atalho Assinar documentos',
+      },
+      {
+        title: 'Entre com o gov.br',
+        text: 'Clique em <strong>Entrar com GOV.BR</strong> e faça login com seu CPF e senha.',
+        alt: 'Tela de login do Portal de Serviços da Jucemg com o botão Entrar com GOV.BR',
+      },
+      {
+        title: 'Pesquise o protocolo',
+        text: 'Em <strong>Número do protocolo do Registro Digital</strong>, digite o número que enviamos e clique em <strong>Pesquisar</strong>.',
+        alt: 'Campo Número do protocolo do Registro Digital e botão Pesquisar',
+      },
+      {
+        title: 'Confira os documentos',
+        text: 'Abra e leia os documentos do processo (contrato, alteração ou distrato) antes de assinar.',
+        alt: 'Lista de documentos do processo no Registro Digital',
+      },
+      {
+        title: 'Escolha a assinatura gov.br',
+        text: 'Entre as opções de assinatura, escolha <strong>gov.br</strong>. Você vai para a página de assinatura do gov.br. Quem tem certificado digital (A1, A3 ou em nuvem) também pode usar.',
+        alt: 'Opções de assinatura: certificado digital, certificado em nuvem e gov.br',
+      },
+      {
+        title: 'Autorize com o código do app',
+        text: 'Digite o <strong>código</strong> gerado no app gov.br do celular e confirme a assinatura.',
+        alt: 'Página de assinatura do gov.br pedindo o código',
+      },
+      {
+        title: 'Confira se falta algum documento',
+        text: 'A Jucemg mostra quais assinaturas já foram feitas (<strong>Sim</strong>) e quais faltam (<strong>Não</strong>). Se houver mais de um documento, assine todos.',
+        alt: 'Situação das assinaturas do processo',
+      },
+      {
+        title: 'Avise a EC',
+        text: 'Pronto. Mande uma mensagem para a gente: quando todos assinarem, enviamos o processo para a Jucemg e avisamos você do resultado.',
+      },
+    ],
+    extra: {
+      title: 'Ative a verificação em duas etapas antes',
+      text: `Desde agosto de 2025, a Jucemg exige a verificação em duas etapas para assinar com gov.br. ${GOVBR_2FA} Atenção: se o processo precisar ser corrigido, as assinaturas são apagadas e <strong>todos assinam de novo</strong>.`,
+    },
+    fonte: {
+      label: 'Jucemg · Certificado digital e assinatura gov.br',
+      href: 'https://jucemg.mg.gov.br/pagina/180/certificado-digital',
+    },
   },
   {
     slug: 'procuracao-ecac',

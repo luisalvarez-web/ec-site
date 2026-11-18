@@ -320,6 +320,20 @@ section.block.tight { padding-top: 0 }
 @media (max-width: 560px) { .guia-list { grid-template-columns: 1fr } }
 .guia-card-title { font-size: 1.25rem; font-weight: 700 }
 .guia-list [hidden], .guia-list[hidden] { display: none }
+.guia-mapa { position: relative; display: inline-block; flex: none; width: 76px; height: 76px }
+.guia-mapa svg { display: block; width: 100%; height: 100%; overflow: visible }
+.guia-mapa-contorno path { fill: none; stroke: var(--ink); stroke-opacity: .35; stroke-width: 1.2; stroke-linejoin: round }
+.guia-mapa-uf { position: absolute; right: -6px; bottom: -2px; font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .06em; background: var(--brand); color: #fff; padding: 2px 6px; border-radius: 4px; line-height: 1.3 }
+.guia-mapa-lg { width: clamp(120px, 18vw, 190px); height: clamp(120px, 18vw, 190px) }
+.guia-mapa-lg .guia-mapa-uf { font-size: .85rem; padding: 3px 9px; right: 0; bottom: 4px }
+.guia-hero { display: grid; grid-template-columns: 1fr auto; gap: 24px clamp(24px, 5vw, 64px); align-items: center }
+.guia-hero > * { min-width: 0 }
+@media (max-width: 640px) {
+  .guia-hero { grid-template-columns: 1fr }
+  .guia-hero .guia-mapa-lg { order: -1; width: 96px; height: 96px }
+  .guia-hero .guia-mapa-lg .guia-mapa-uf { font-size: .7rem; padding: 2px 6px }
+}
+@media print { .guia-mapa { display: none } }
 .guia-search { display: grid; gap: 8px; max-width: 560px; margin-bottom: 28px }
 .guia-search-box { position: relative }
 .guia-search-box svg { position: absolute; left: 16px; top: 50%; width: 20px; height: 20px; transform: translateY(-50%); fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; pointer-events: none }

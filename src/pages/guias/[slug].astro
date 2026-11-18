@@ -2,6 +2,7 @@
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import Base from '../../layouts/Base.astro';
+import GuiaMapa from '../../components/GuiaMapa.astro';
 import { guias, type Guia } from '../../data/guias';
 import { site } from '../../data/site';
 
@@ -26,7 +27,8 @@ const whatsapp = `${site.whatsapp.href}?text=${encodeURIComponent(`Olá! Estou n
 ---
 <Base title={guia.seoTitle} description={guia.description}>
   <div class="page-hero">
-    <div class="wrap">
+    <div class="wrap guia-hero">
+      <div>
       <a class="guia-back" href="/guias">← Todos os guias</a>
       <span class="eyebrow">Passo a passo · {guia.tag}</span>
       <h1>{guia.title}</h1>
@@ -40,6 +42,8 @@ const whatsapp = `${site.whatsapp.href}?text=${encodeURIComponent(`Olá! Estou n
         <button type="button" class="btn btn-ghost btn-sm" data-share>Copiar link</button>
         <button type="button" class="btn btn-ghost btn-sm" data-print>Imprimir ou salvar PDF</button>
       </div>
+      </div>
+      <GuiaMapa uf={guia.uf} size="lg" />
     </div>
   </div>
 

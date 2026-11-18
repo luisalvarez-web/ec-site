@@ -1,0 +1,99 @@
+---
+// Mapa do estado (ou do Brasil) pintado com a bandeira, para identificar cada guia.
+// Contornos de @svg-maps/brazil (Victor Cazanave, CC BY 4.0).
+// Bandeiras simplificadas (sem brasão nem lema), com cores dos desenhos oficiais.
+import brazilModule from '@svg-maps/brazil';
+
+type MapData = { viewBox: string; locations: { id: string; name: string; path: string }[] };
+const brazil: MapData = (brazilModule as any).default ?? brazilModule;
+
+interface Props {
+  /** Sigla do estado em minúsculas (ex.: 'rj'). Sem sigla, mostra o Brasil inteiro. */
+  uf?: string;
+  size?: 'sm' | 'lg';
+}
+
+const { uf, size = 'sm' } = Astro.props;
+
+// Bandeiras desenhadas numa caixa própria; a caixa é recortada pelo contorno do mapa.
+const bandeiras: Record<string, { box: string; svg: string }> = {
+  rj: {
+    box: '0 0 100 70',
+    svg: '<rect width="100" height="70" fill="#fff"/><rect x="50" width="50" height="35" fill="#00AFEF"/><rect y="35" width="50" height="35" fill="#00AFEF"/>',
+  },
+  es: {
+    box: '0 0 100 70',
+    svg: '<rect width="100" height="22.5" fill="#0096E1"/><rect y="22.5" width="100" height="25" fill="#fff"/><rect y="47.5" width="100" height="22.5" fill="#F09BBE"/>',
+  },
+  sc: {
+    box: '0 0 110 80',
+    svg: '<rect width="110" height="80" fill="#ED1C24"/><rect y="26.67" width="110" height="26.67" fill="#fff"/><path d="M55 10 100 40 55 70 10 40Z" fill="#A6CE39"/>',
+  },
+  mg: {
+    box: '0 0 100 70',
+    svg: '<rect width="100" height="70" fill="#fff"/><path d="M50 17.7 70 52.3H30Z" fill="#ED1C24"/>',
+  },
+  br: {
+    box: '0 0 100 70',
+    svg: '<rect width="100" height="70" fill="#009C3B"/><path d="M8.5 35 50 6 91.5 35 50 64Z" fill="#FFDF00"/><circle cx="50" cy="35" r="17.5" fill="#002776"/><path d="M33 31.5Q50 27 67 38.5" fill="none" stroke="#fff" stroke-width="3"/>',
+  },
+};
+
+// Caixa do contorno. Os caminhos do pacote usam só "m" relativo (com lineto implícito) e "z".
+function caixa(d: string) {
+  let x = 0, y = 0, sx = 0, sy = 0;
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const [, cmd, args] of d.matchAll(/([mMzZ])([^mMzZ]*)/g)) {
+    if (cmd === 'z' || cmd === 'Z') { x = sx; y = sy; continue; }
+    const n = args.trim().split(/[\s,]+/).filter(Boolean).map(Number);
+    for (let i = 0; i + 1 < n.length; i += 2) {
+      if (cmd === 'm') { x += n[i]; y += n[i + 1]; } else { x = n[i]; y = n[i + 1]; }
+      if (i === 0) { sx = x; sy = y; }
+      minX = Math.min(minX, x); maxX = Math.max(maxX, x);
+      minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+    }
+  }
+  return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
+}
+
+const estado = uf ? brazil.locations.find((l) => l.id === uf) : undefined;
+if (uf && (!estado || !bandeiras[uf])) throw new Error(`GuiaMapa: estado "${uf}" sem contorno ou bandeira`);
+
+const paths = estado ? [estado.path] : brazil.locations.map((l) => l.path);
+const b = estado ? caixa(estado.path) : (() => {
+  const [x, y, w, h] = brazil.viewBox.split(' ').map(Number);
+  return { x, y, w, h };
+})();
+
+// Enquadra o contorno num quadrado com folga, para todos terem o mesmo tamanho visual.
+const lado = Math.max(b.w, b.h) * 1.1;
+const cx = b.x + b.w / 2;
+const cy = b.y + b.h / 2;
+const viewBox = [cx - lado / 2, cy - lado / 2, lado, lado].map((n) => n.toFixed(1)).join(' ');
+
+const bandeira = bandeiras[uf ?? 'br'];
+const sigla = uf ? uf.toUpperCase() : 'BR';
+const nome = estado ? estado.name : 'Brasil';
+const clipId = `mapa-${sigla.toLowerCase()}-${Math.random().toString(36).slice(2, 8)}`;
+---
+<span class={`guia-mapa guia-mapa-${size}`} role="img" aria-label={`Mapa ${estado ? 'do estado' : 'do'} ${nome} com a bandeira`}>
+  <svg viewBox={viewBox} aria-hidden="true">
+    <defs>
+      <clipPath id={clipId}>
+        {paths.map((d) => <path d={d} />)}
+      </clipPath>
+    </defs>
+    <g clip-path={`url(#${clipId})`}>
+      <svg
+        x={b.x} y={b.y} width={b.w} height={b.h}
+        viewBox={bandeira.box}
+        preserveAspectRatio="xMidYMid slice"
+        set:html={bandeira.svg}
+      />
+    </g>
+    <g class="guia-mapa-contorno">
+      {paths.map((d) => <path d={d} vector-effect="non-scaling-stroke" />)}
+    </g>
+  </svg>
+  <span class="guia-mapa-uf" aria-hidden="true">{sigla}</span>
+</span>

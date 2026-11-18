@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import ContactCard from '../components/ContactCard.astro';
 import { guias } from '../data/guias';
 import { site } from '../data/site';
+import GuiaMapa from '../components/GuiaMapa.astro';
 
 // Texto pesquisável de cada guia: título, tag, descrição, palavras-chave e títulos dos passos.
 const indice = (g: (typeof guias)[number]) =>
@@ -10,7 +11,7 @@ const indice = (g: (typeof guias)[number]) =>
 ---
 <Base
   title="Guias passo a passo para clientes | EC Consultoria"
-  description="Passo a passo para assinar protocolos no Simplifica ES e na Jucerja e autorizar seu contador na Receita Federal (procuração eCAC)."
+  description="Passo a passo para assinar processos nas Juntas Comerciais (ES, RJ, SC e MG) e dar procuração ao seu contador na Receita, no FGTS Digital e mais."
 >
   <div class="page-hero">
     <div class="wrap">
@@ -34,6 +35,7 @@ const indice = (g: (typeof guias)[number]) =>
       <div class="services guia-list">
         {guias.map((g) => (
           <a class="svc" href={`/guias/${g.slug}`} data-busca={indice(g)}>
+            <GuiaMapa uf={g.uf} />
             <span class="code">{g.tag.toUpperCase()} · {g.steps.length} PASSOS</span>
             <h2 class="guia-card-title">{g.title}</h2>
             <p>{g.description}</p>
