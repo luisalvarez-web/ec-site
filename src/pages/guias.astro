@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactCard from '../components/ContactCard.astro';
+import { guias } from '../data/guias';
+---
+<Base
+  title="Guias passo a passo para clientes | EC Consultoria"
+  description="Passo a passo com prints para assinar protocolos na Jucerja, autorizar seu contador na Receita Federal (procuração eCAC) e outras rotinas."
+>
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Guias</span>
+      <h1>Passo a passo para as rotinas que dependem de você.</h1>
+      <p class="lede">Algumas etapas precisam ser feitas pelo próprio cliente, com o gov.br ou o certificado digital. Reunimos aqui o caminho, tela a tela.</p>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="services guia-list">
+        {guias.map((g) => (
+          <a class="svc" href={`/guias/${g.slug}`}>
+            <span class="code">{g.tag.toUpperCase()} · {g.steps.length} PASSOS</span>
+            <h2 class="guia-card-title">{g.title}</h2>
+            <p>{g.description}</p>
+            <span class="more">Ver passo a passo →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <ContactCard heading="Precisa de outro passo a passo?" />
+    </div>
+  </section>
+</Base>
